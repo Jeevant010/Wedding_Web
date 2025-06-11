@@ -20,19 +20,19 @@ app.use(core({
 app.use(express.json());
 require("dotenv").config();
 
-// mongoose.connect(
-    
-//     "mongodb+srv://Tours:" +
-//     process.env.MONGO_PASSWORD +
-//     "@cluster0.afxf5.mongodb.net/Tour_Travels?retryWrites=true&w=majority&appName=Cluster0",
-//     {}
-// )
-// .then((x) => {
-//     console.log("connected to mongo!");
-// })
-// .catch((err) => {
-//     console.log("Error while connecting to mongo\n",err);
-// });
+mongoose.connect("mongodb+srv://Deepesh:" + process.env.MONGO_PASSWORD + "@cluster0.4l8pl.mongodb.net/",
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    }
+
+)
+.then(() => {
+    console.log("Connected to MongoDB");
+})
+.catch((err) => {
+    console.error("Error connecting to MongoDB", err);
+});
 
 
 app.get("/",(req, res) => {
