@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "This is a marriage filmer website for a client",
+  "homepage": "https://github.com/Jeevant010/Wedding_Web#readme",
+  "bugs": {
+    "url": "https://github.com/Jeevant010/Wedding_Web/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jeevant010/Wedding_Web.git"
+  },
+  "license": "ISC",
+  "author": "Jeevant",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.15.1",
+    "passport": "^0.7.0"
+  }
+}
