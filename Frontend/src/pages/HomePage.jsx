@@ -101,6 +101,7 @@ const HomePage =() =>{
         // </main>
         <div className='homepage'>
             <h1>Wedding Website </h1>
+            <p>Setup</p>
         </div>
     );
 };
