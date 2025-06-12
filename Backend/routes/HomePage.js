@@ -5,12 +5,8 @@ const homeController = require('../controllers/homeController');
 // Get homepage data
 router.get('/', homeController.getHomePage);
 
-// In your HomePage.js routes file
-router.get('/test', (req, res) => {
-  res.json({ message: 'Homepage route is working!' });
-});
 
-// Update homepage data (you may want to protect this route with authentication)
+// Update homepage data
 router.put('/update', homeController.updateHomePage);
 
 module.exports = router;
