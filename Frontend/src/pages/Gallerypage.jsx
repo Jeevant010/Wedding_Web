@@ -2,7 +2,7 @@ import React from 'react'
 
 const Gallerypage = () => {
   return (
-    <div></div>
+    <div>Gallery</div>
   )
 }
 

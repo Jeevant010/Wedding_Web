@@ -99,7 +99,7 @@ const HomePage =() =>{
         //     <TestimonialSection testimonials={homeData.testimonialSection} />
         //     <ContactSection contactInfo={homeData.contactInfo} />
         // </main>
-        <div className='homepage'>
+        <div className='homepage'>Home Page
         </div>
     );
 };
