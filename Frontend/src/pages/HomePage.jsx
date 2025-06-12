@@ -1,6 +1,6 @@
 import { useState , useEffect } from 'react'
 import HeroSection from '../components/HeroSection'
-// import FeatureWeddings from '../components/FeatureWeddings'
+import FeatureWeddings from '../components/FeatureWeddings'
 import AboutSection from '../components/AboutSection'
 import TestimonialSection from '../components/TestimonialSection'
 import ContactSection from '../components/ContactSection'
@@ -99,9 +99,7 @@ const HomePage =() =>{
         //     <TestimonialSection testimonials={homeData.testimonialSection} />
         //     <ContactSection contactInfo={homeData.contactInfo} />
         // </main>
-        <div className='homepage'>
-            <h1>Wedding Website </h1>
-            <p>Setup</p>
+        <div className='homepage'>Home Page
         </div>
     );
 };
