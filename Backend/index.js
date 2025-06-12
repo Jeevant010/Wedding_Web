@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const cors = require("cors");
 const home = require('./models/HomePage')
 const port = 9000;
 
@@ -11,6 +12,11 @@ const app = express();
 
 // Configure middleware FIRST
 app.use(express.json());
+app.use(cors({
+    origin : "http://localhost:5173",
+    methods : "GET,POST,PUT,DELETE",
+    Credential: true
+}));
 // app.use(core({
 //     origin : "http://localhost:3000",
 //     methods : "GET,POST,PUT,DELETE",
