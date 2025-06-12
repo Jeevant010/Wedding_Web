@@ -17,11 +17,6 @@ app.use(cors({
     methods : "GET,POST,PUT,DELETE",
     Credential: true
 }));
-// app.use(core({
-//     origin : "http://localhost:3000",
-//     methods : "GET,POST,PUT,DELETE",
-//     Credential: true
-// }));
 
 // THEN mount routes
 app.use('/home', homeRoutes);

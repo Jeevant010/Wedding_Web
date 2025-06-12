@@ -1,0 +1,222 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: auto; /* Changed from right: 0 */
+  width: 200px; /* Changed from 10% to fixed width */
+  height: 100%;
+  z-index: 1000;
+  transition: all 0.4s ease;
+  background-color: black;
+  padding: 50px 0;
+}
+
+.site-header.scrolled {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 30px 0;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* Changed from max-width */
+  height: 100%;
+  padding: 0;
+}
+
+/* Logo styling */
+.logo-container {
+  margin-bottom: 40px; /* Increased from 15px */
+  text-align: center;
+}
+
+.logo {
+  height: 80px;
+  width: auto;
+  transition: all 0.3s ease;
+}
+
+.scrolled .logo {
+  height: 60px;
+}
+
+/* Navigation styling */
+.main-nav {
+  width: 100%;
+  text-align: center;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column; /* Changed to column for vertical menu */
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 50px; /* Added gap for vertical spacing */
+}
+
+.nav-item {
+  margin: 0; /* Removed horizontal margin */
+}
+
+.nav-item a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 4.5px;
+  text-transform: uppercase;
+  padding: 10px 0; /* FIXED: Changed from 100px to 10px */
+  position: relative;
+  transition: all 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/*On hovering over the link the background color changes*/
+.nav-item a:hover {
+  background-color: rgba(255, 255, 255, 0.238); /* Added subtle background on hover */
+  padding: 10px 50px; /* Maintain padding on hover */
+  border-radius: 5px; /* Added border radius for a softer look */;
+}
+/* the background color of whole padding of that active link changes */
+.nav-item a.active {
+  background-color: #dc0505; /* Full red background */
+  color: white;
+  padding: 10px 50px; /* Match your hover padding */
+  border-radius: 5px;
+}
+
+/* Optionally, disable the underline for active items */
+.nav-item a.active::after {
+  width: 0; /* Remove underline for active links */
+}
+
+/* You may also want to adjust your hover style to not conflict with active */
+.nav-item a:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.238);
+  padding: 10px 50px;
+  border-radius: 5px;
+}
+
+/* Underline animation effect */
+.nav-item a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 50%;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-item a:hover::after {
+  width: 70%;
+}
+
+/* Mobile menu toggle */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle span.open:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle span.open:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle span.open:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Adjust body padding for sidebar */
+body {
+  padding-left: 200px; /* Match the sidebar width */
+  padding-top: 0; /* No top padding needed for sidebar */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .site-header {
+    width: 100%; /* Full width on mobile */
+    height: auto;
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+  }
+
+  .header-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo-container {
+    margin-bottom: 0;
+    text-align: left;
+  }
+
+  .logo {
+    height: 50px;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .main-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    visibility: hidden;
+  }
+
+  .main-nav.active {
+    max-height: 300px;
+    visibility: visible;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-links {
+    flex-direction: column;
+    padding: 20px 0;
+  }
+
+  .nav-item {
+    margin: 10px 0;
+  }
+  
+  body {
+    padding-left: 0; /* No left padding on mobile */
+    padding-top: 80px; /* FIXED: Changed from 800px to 80px */
+  }
+}
