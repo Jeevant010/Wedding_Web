@@ -6,4 +6,4 @@ const contactPage = () => {
   )
 }
 
-export default contactPage
+export default contactPage;
