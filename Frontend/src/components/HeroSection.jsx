@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { FaChevronDown } from "react-icons/fa6";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import "../styles/HeroSection.css";
@@ -20,15 +19,15 @@ const HeroSection = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const videoRefs = useRef([]);
 
-  const handleNextVideo = () => {
+  const handleNextVideo = useCallback(() => {
     const nextIndex = (currentVideoIndex + 1) % videos.length;
     setCurrentVideoIndex(nextIndex);
-  };
+  }, [currentVideoIndex, videos.length]);
 
-  const handlePrevVideo = () => {
+  const handlePrevVideo = useCallback(() => {
     const prevIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
     setCurrentVideoIndex(prevIndex);
-  };
+  }, [currentVideoIndex, videos.length]);
 
   const scrollToNextSection = () => {
     window.scrollTo({
@@ -61,7 +60,7 @@ const HeroSection = () => {
     }, 5000);
 
     return () => clearInterval(intervalId);
-  }, [currentVideoIndex]);
+  }, [currentVideoIndex, handleNextVideo, videos.length]);
 
   return (
     <div className="hero-container">
@@ -106,25 +105,25 @@ const HeroSection = () => {
       </div>
       
       <div className="content-wrapper">
-        <motion.h1
+        <h1
           className="hero-title"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
           Capture Your Forever Moments
-        </motion.h1>
-        <motion.p
+        </h1>
+        <p
           className="hero-subtitle"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1 }}
         >
           Professional wedding photography & cinematography to preserve your special day
-        </motion.p>
+        </p>
       </div>
-      
-      <motion.div
+
+      <div
         className="scroll-down"
         onClick={scrollToNextSection}
         initial={{ opacity: 0 }}
@@ -133,7 +132,7 @@ const HeroSection = () => {
       >
         <span className="scroll-text">Scroll Down</span>
         <FaChevronDown />
-      </motion.div>
+      </div>
     </div>
   );
 };
