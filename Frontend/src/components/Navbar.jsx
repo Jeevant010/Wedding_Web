@@ -27,7 +27,7 @@ const Navbar = () => {
 
   return (
     <nav className={`site-header ${scrolled ? 'scrolled' : ''}`}>
-      <div className="header-container">
+      <div className="nav-container">
         <div className="logo-container">
           <NavLink to="/">
             <img src={logo} alt="The Wedding Filmer" className="logo" />

@@ -4,15 +4,17 @@ import FeatureWeddings from '../components/FeatureWeddings'
 import AboutSection from '../components/AboutSection'
 import TestimonialSection from '../components/TestimonialSection'
 import ContactSection from '../components/ContactSection'
+import HeaderSection from '../components/HeaderSection'
 import axios from 'axios';
 
 const HomePage =() =>{
     const [homeData, setHomeData] = useState({
-        heroSection: {},
-        featureWeddings: [],
-        aboutSection: {},
-        testimonialSection: [],
-        contactSection: {}
+        HeaderSection: {},
+        HeroSection: {},
+        FeatureWeddings: [],
+        AboutSection: {},
+        TestimonialSection: [],
+        ContactSection: {}
     });
     const [Loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -43,7 +45,8 @@ const HomePage =() =>{
     return (
     <>
         <div className='homepage'>
-            <HeroSection data={homeData.heroSection}/>
+            <HeaderSection data={homeData.HeaderSection}/>
+            <HeroSection data={homeData.HeroSection}/>
         </div>
     </>
         
