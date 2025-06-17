@@ -1,6 +1,6 @@
 import { useState , useEffect } from 'react'
 import HeroSection from '../components/HeroSection'
-import FeatureWeddings from '../components/FeatureWeddings'
+import Featureweddings from '../components/Featureweddings'
 import AboutSection from '../components/AboutSection'
 import TestimonialSection from '../components/TestimonialSection'
 import ContactSection from '../components/ContactSection'
@@ -11,7 +11,7 @@ const HomePage =() =>{
     const [homeData, setHomeData] = useState({
         HeaderSection: {},
         HeroSection: {},
-        FeatureWeddings: [],
+        Featureweddings: [],
         AboutSection: {},
         TestimonialSection: [],
         ContactSection: {}

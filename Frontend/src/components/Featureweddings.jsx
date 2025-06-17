@@ -1,9 +1,9 @@
 import React from 'react'
 
-const FeatureWeddings = () => {
+const Featureweddings = () => {
   return (
     <div>FeatureWeddings</div>
   )
 }
 
-export default FeatureWeddings
+export default Featureweddings;
