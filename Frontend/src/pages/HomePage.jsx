@@ -22,7 +22,7 @@ const HomePage =() =>{
     useEffect(() =>{
         const fetchHomedata = async()=> {
             try{
-                const response = await axios.get('http://localhost:9000/home');
+                const response = await axios.get('https://back-wedding-ashy.vercel.app/');
                 if(response.data && response.data.data){
                     setHomeData(response.data.data);
                 }
