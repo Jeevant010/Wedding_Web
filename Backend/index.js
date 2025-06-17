@@ -7,6 +7,7 @@ const port = 9000;
 
 const passport = require("passport");
 const homeRoutes = require('./routes/HomePage');
+const searchRoutes = require('./routes/search');
 const app = express();
 // console.log("Print it everywhere");
 
@@ -20,6 +21,7 @@ app.use(cors({
 
 // THEN mount routes
 app.use('/home', homeRoutes);
+app.use('/api/search', searchRoutes);
 
 mongoose.connect("mongodb+srv://Deepesh:" + process.env.MONGO_PASSWORD + "@cluster0.4l8pl.mongodb.net/",
     {
