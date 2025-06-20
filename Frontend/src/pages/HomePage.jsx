@@ -12,7 +12,6 @@ const HomePage =() =>{
         HeaderSection: {},
         HeroSection: {},
         Featureweddings: [],
-        AboutSection: {},
         TestimonialSection: [],
         AboutSection: {},
         ContactSection: {}
