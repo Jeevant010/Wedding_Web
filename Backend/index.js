@@ -1,3 +1,4 @@
+// make any changes required to run the Featured wedding section
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();

@@ -17,7 +17,7 @@ const Featureweddings = () => {
       try {
         setLoading(true)
         // Replace with your actual API endpoint
-        const response = await fetch('http://your-api-endpoint/featured-weddings')
+        const response = await fetch('http://localhost:9000/api/weddings/featured')
         
         if (!response.ok) {
           throw new Error('Failed to fetch wedding data')
