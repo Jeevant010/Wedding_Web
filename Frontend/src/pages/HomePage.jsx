@@ -47,7 +47,7 @@ const HomePage =() =>{
         <div className='homepage'>
             <HeaderSection data={homeData.HeaderSection}/>
             <HeroSection data={homeData.HeroSection}/>
-            <FeatureWeddings data={homeData.FeatureWeddings}/>
+            <Featureweddings data={homeData.Featureweddings}/>
             <TestimonialSection data={homeData.TestimonialSection}/>
             <AboutSection data={homeData.AboutSection}/>
         </div>
