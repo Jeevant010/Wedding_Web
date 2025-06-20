@@ -14,10 +14,11 @@ const app = express();
 // Configure middleware FIRST
 app.use(express.json());
 app.use(cors({
-    origin : "http://localhost:5173",
+    origin : ['http://localhost:5173', 'https://wedding-web-gold.vercel.app'],
     methods : "GET,POST,PUT,DELETE",
     Credential: true
 }));
+
 
 // THEN mount routes
 app.use('/home', homeRoutes);
