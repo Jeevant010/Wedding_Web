@@ -23,11 +23,12 @@ app.use(cors({
 app.use('/home', homeRoutes);
 app.use('/api/search', searchRoutes);
 
-mongoose.connect("mongodb+srv://Deepesh:" + process.env.MONGO_PASSWORD + "@cluster0.4l8pl.mongodb.net/",
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    }
+mongoose.connect(
+    
+     "mongodb+srv://Tours:" +
+    process.env.MONGO_PASSWORD +
+    "@cluster0.afxf5.mongodb.net/Tour_Travels?retryWrites=true&w=majority&appName=Cluster0",
+    {}
 )
 .then(() => {
     console.log("Connected to MongoDB");

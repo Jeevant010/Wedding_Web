@@ -1,6 +1,6 @@
 import { useState , useEffect } from 'react'
 import HeroSection from '../components/HeroSection'
-import FeatureWeddings from '../components/FeatureWeddings'
+import Featureweddings from '../components/Featureweddings'
 import AboutSection from '../components/AboutSection'
 import TestimonialSection from '../components/TestimonialSection'
 import ContactSection from '../components/ContactSection'
@@ -11,7 +11,8 @@ const HomePage =() =>{
     const [homeData, setHomeData] = useState({
         HeaderSection: {},
         HeroSection: {},
-        FeatureWeddings: [],
+        Featureweddings: [],
+        AboutSection: {},
         TestimonialSection: [],
         AboutSection: {},
         ContactSection: {}
@@ -22,7 +23,7 @@ const HomePage =() =>{
     useEffect(() =>{
         const fetchHomedata = async()=> {
             try{
-                const response = await axios.get('http://localhost:9000/home');
+                const response = await axios.get('https://back-wedding-ashy.vercel.app/');
                 if(response.data && response.data.data){
                     setHomeData(response.data.data);
                 }
