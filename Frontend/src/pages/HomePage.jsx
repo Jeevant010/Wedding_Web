@@ -12,8 +12,8 @@ const HomePage =() =>{
         HeaderSection: {},
         HeroSection: {},
         FeatureWeddings: [],
-        AboutSection: {},
         TestimonialSection: [],
+        AboutSection: {},
         ContactSection: {}
     });
     const [Loading, setLoading] = useState(true);
@@ -47,6 +47,9 @@ const HomePage =() =>{
         <div className='homepage'>
             <HeaderSection data={homeData.HeaderSection}/>
             <HeroSection data={homeData.HeroSection}/>
+            <FeatureWeddings data={homeData.FeatureWeddings}/>
+            <TestimonialSection data={homeData.TestimonialSection}/>
+            <AboutSection data={homeData.AboutSection}/>
         </div>
     </>
         
