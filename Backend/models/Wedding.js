@@ -15,7 +15,7 @@ const weddingServiceSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true,
-        enum: ['venues', 'photographers', 'planners', 'decor', 'catering', 'other'],
+        enum: ['Beach Wedding', 'Traditional Wedding','Garden Wedding', 'Urban Wedding'],
         index: true // Index for category filtering
     },
     image: {

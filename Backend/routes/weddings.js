@@ -20,10 +20,17 @@ const {
     getServiceById,
     createService,
     updateService,
-    deleteService
-    } = require('../controllers/weddingController');
+    deleteService,
+    getFeaturedServices
+} = require('../controllers/weddingController');
 
+// Get all wedding services
 router.get('/', getAllServices);
+
+// IMPORTANT: Place specific routes before parameterized routes
+router.get('/featured', getFeaturedServices);
+
+// Routes with parameters
 router.get('/:id', getServiceById);
 router.post('/', createService);
 router.put('/:id', updateService);

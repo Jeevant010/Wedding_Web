@@ -1,123 +1,87 @@
 // write the controller for the WeddingService model
 const WeddingService = require('../models/WeddingService');
-const mogose = require('mongoose');
-
-// Helper function to handle errors
-const handleError = (res, error) => {
-  console.error('Wedding Service error:', error);
-  return res.status(500).json({ error: 'Server error processing your request' });
-}
 
 // Get all wedding services
-exports.getAllServices = async (req, res) => {
+const getAllServices = async (req, res) => {
   try {
-    const services = await WeddingService.find().sort({ createdAt: -1 });
-    return res.json(services);
+    const services = await WeddingService.find();
+    res.json(services);
   } catch (error) {
-    return handleError(res, error);
+    res.status(500).json({ error: error.message });
   }
-}
-// Get a single wedding service by ID
-exports.getServiceById = async (req, res) => {
+};
+
+// Get featured wedding services
+const getFeaturedServices = async (req, res) => {
+  try {
+    const featuredServices = await WeddingService.find({ featured: true });
+    res.json(featuredServices);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Get wedding service by ID
+const getServiceById = async (req, res) => {
   try {
     const service = await WeddingService.findById(req.params.id);
     if (!service) {
       return res.status(404).json({ error: 'Wedding service not found' });
     }
-    return res.json(service);
+    res.json(service);
   } catch (error) {
-    return handleError(res, error);
+    res.status(500).json({ error: error.message });
   }
-}
-// Create a new wedding service
-exports.createService = async (req, res) => {
+};
+
+// Create new wedding service
+const createService = async (req, res) => {
   try {
     const newService = new WeddingService(req.body);
-    await newService.save();
-    return res.status(201).json(newService);
+    const savedService = await newService.save();
+    res.status(201).json(savedService);
   } catch (error) {
-    return handleError(res, error);
+    res.status(400).json({ error: error.message });
   }
-}
-// Update an existing wedding service
-exports.updateService = async (req, res) => {
+};
+
+// Update wedding service
+const updateService = async (req, res) => {
   try {
     const updatedService = await WeddingService.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { new: true, runValidators: true }
+      { new: true }
     );
     if (!updatedService) {
       return res.status(404).json({ error: 'Wedding service not found' });
     }
-    return res.json(updatedService);
+    res.json(updatedService);
   } catch (error) {
-    return handleError(res, error);
+    res.status(400).json({ error: error.message });
   }
-}   
-// Delete a wedding service
-exports.deleteService = async (req, res) => {
+};
+
+// Delete wedding service
+const deleteService = async (req, res) => {
   try {
     const deletedService = await WeddingService.findByIdAndDelete(req.params.id);
     if (!deletedService) {
       return res.status(404).json({ error: 'Wedding service not found' });
     }
-    return res.json({ message: 'Wedding service deleted successfully' });
+    res.json({ message: 'Wedding service deleted successfully' });
   } catch (error) {
-    return handleError(res, error);
+    res.status(500).json({ error: error.message });
   }
-}
-// Search for wedding services by title or keywords
-exports.searchServices = async (req, res) => {      
-  try {
-    const query = req.query.q;
-    if (!query) {
-      return res.json([]);
-    }
+};
 
-    // Using case-insensitive regex for better matches
-    const services = await WeddingService.find({
-      $or: [
-        { title: { $regex: query, $options: 'i' } },
-        { keywords: { $regex: query, $options: 'i' } }
-      ]
-    })
-    .select('title category image pricing.startingPrice rating')
-    .limit(20); // Limit results for performance
-
-    return res.json(services);
-  } catch (error) {
-    return handleError(res, error);
-  }
-}
-// Get featured wedding services
-exports.getFeaturedServices = async (req, res) => {
-  try {
-    const featuredServices = await WeddingService.find({ featured: true })
-      .sort({ createdAt: -1 })
-      .limit(10); // Limit to 10 featured services
-    return res.json(featuredServices);
-  } catch (error) {
-    return handleError(res, error);
-  }
-}
-// Get services by category
-exports.getServicesByCategory = async (req, res) => {
-  try {
-    const category = req.params.category;
-    if (!category) {
-      return res.status(400).json({ error: 'Category is required' });
-    }
-
-    const services = await WeddingService.find({ category })
-      .sort({ createdAt: -1 })
-      .limit(20); // Limit results for performance
-
-    return res.json(services);
-  } catch (error) {
-    return handleError(res, error);
-  }
-}
+module.exports = {
+  getAllServices,
+  getServiceById,
+  createService,
+  updateService,
+  deleteService,
+  getFeaturedServices
+};
 
 
-    
