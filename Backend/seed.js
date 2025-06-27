@@ -2,16 +2,16 @@ const mongoose = require('mongoose');
 const WeddingService = require('./models/WeddingService');
 require('dotenv').config();
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/wedding_services', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('MongoDB connected for seeding'))
-.catch(err => console.error('MongoDB connection error:', err));
+// Use the same connection string as in index.js
+const MONGODB_URI = `mongodb+srv://Deepesh:${process.env.MONGO_PASSWORD}@cluster0.4l8pl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+
+mongoose.connect(MONGODB_URI)
+  .then(() => console.log('MongoDB Atlas connected for seeding'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 const sampleWeddings = [
   {
-    title: 'Lara & Michael',
+    title: 'L & Michael',
     description: 'A beautiful beach wedding in Malibu',
     image: '/images/sample-wedding1.jpg',
     featured: true,

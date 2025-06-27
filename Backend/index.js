@@ -16,12 +16,12 @@ app.use(cors({
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/wedding_services', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('MongoDB connected successfully'))
-.catch(err => console.error('MongoDB connection error:', err));
+const MONGODB_URI = `mongodb+srv://Deepesh:${process.env.MONGO_PASSWORD}@cluster0.4l8pl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+
+// Connect to MongoDB Atlas
+mongoose.connect(MONGODB_URI)
+  .then(() => console.log('MongoDB Atlas connected successfully'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
 const weddingRoutes = require('./routes/weddings');
