@@ -1,32 +1,16 @@
-// Basic controller for homepage
 
 exports.getHomePage = (req, res) => {
   try {
-    // For now, return a simple JSON response
+    // Return an empty structured response
     res.json({
       success: true,
       message: "Homepage data retrieved successfully",
       data: {
-        heroSection: {
-          title: "Your Beautiful Wedding Story",
-          subtitle: "Professional Wedding Photography & Videography",
-          backgroundImage: "/images/default-hero.jpg"
-        },
-        featuredWeddings: [
-          {
-            title: "Sarah & John's Wedding",
-            coupleNames: "Sarah & John",
-            location: "Beachside Resort",
-            date: "2023-06-15",
-            thumbnailImage: "/images/wedding1.jpg"
-          }
-        ],
-        aboutSection: {
-          title: "About Us",
-          description: "We capture authentic emotions and create timeless memories of your special day."
-        }
+        heroSection: {},
+        featuredWeddings: [],
+        aboutSection: {}
       }
-    });
+    }); 
   } catch (error) {
     console.error("Error in getHomePage:", error);
     res.status(500).json({
@@ -39,7 +23,7 @@ exports.getHomePage = (req, res) => {
 
 exports.updateHomePage = (req, res) => {
   try {
-    // For now, just echo back the request
+    // Echo back the request
     res.json({
       success: true,
       message: "Homepage updated successfully",

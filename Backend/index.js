@@ -24,6 +24,8 @@ mongoose.connect(MONGODB_URI)
   .catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
+const homePageRoutes = require('./routes/HomePage');
+app.use('/api/home', homePageRoutes);
 const weddingRoutes = require('./routes/weddings');
 app.use('/api/weddings', weddingRoutes);
 

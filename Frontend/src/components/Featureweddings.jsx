@@ -35,7 +35,7 @@ const Featureweddings = () => {
         // Set loading state to true before starting the fetch
         setLoading(true)
         // Make API request to the backend server to get featured weddings
-        const response = await fetch(`${API_BASE_URL}`)
+        const response = await fetch(`${API_BASE_URL}/api/weddings/featured`)
           
         // Check if the response was successful
         if (!response.ok) {
