@@ -1,6 +1,7 @@
 import './App.css'
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useState } from 'react'
 import HomePage from './pages/HomePage' 
 import Navbar from './components/Navbar'
 import AboutPage from './pages/AboutPage' 
@@ -12,10 +13,19 @@ import FilmPage from './pages/FilmPage'
 import './App.css' 
 
 function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <Router>
       <div className="app-container">
-        <Navbar />
+      <button className="mobile-toggle" onClick={toggleSidebar}>
+        {isSidebarOpen ? '✕' : '☰'}
+      </button>
+      <Navbar isOpen={isSidebarOpen} />
         {/* <HeroSection /> */}
         {/* <FeatureWeddings /> */}
 

@@ -1,98 +1,112 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+// src/components/WeddingFilmerSidebar.jsx
+import React, { useState } from 'react';
+import { FiHome, FiFilm, FiCamera, FiHeart, FiMail, FiPhone, FiMenu, FiX } from 'react-icons/fi';
+import { FaVimeoV, FaInstagram, FaPinterestP } from 'react-icons/fa';
 import '../styles/Navbar.css';
-import logo from '../assets/logo.png';
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState('Home');
 
-  // Active link class handler
-  const getLinkClass = ({ isActive }) => {
-    return isActive ? 'active' : '';
+  const toggleSidebar = () => setIsOpen(!isOpen);
+  
+  const handleNavClick = (item) => {
+    setActiveItem(item);
+    setIsOpen(false);
   };
 
+  // Navigation data
+  const navItems = [
+    { path: '#', label: 'Home', icon: <FiHome /> },
+    { path: '#', label: 'Our Films', icon: <FiFilm /> },
+    { path: '#', label: 'Process', icon: <FiCamera /> },
+    { path: '#', label: 'Love Stories', icon: <FiHeart /> },
+    { path: '#', label: 'Contact', icon: <FiMail /> }
+  ];
+
+  // Social links data
+  const socialLinks = [
+    { url: '#', icon: <FaVimeoV size={16} />, name: 'Vimeo' },
+    { url: '#', icon: <FaInstagram size={16} />, name: 'Instagram' },
+    { url: '#', icon: <FaPinterestP size={16} />, name: 'Pinterest' }
+  ];
+
   return (
-    <nav className={`site-header ${scrolled ? 'scrolled' : ''}`}>
-      <div className="nav-container">
-        <div className="logo-container">
-          <NavLink to="/">
-            <img src={logo} alt="The Wedding Filmer" className="logo" />
-          </NavLink>
-        </div>
-        
-        {/* Mobile menu button */}
-        <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
-          <span className={menuOpen ? 'open' : ''}></span>
-          <span className={menuOpen ? 'open' : ''}></span>
-          <span className={menuOpen ? 'open' : ''}></span>
-        </div>
-        
-        {/* Navigation Links */}
-        <div className={`main-nav ${menuOpen ? 'active' : ''}`}>
-          <ul className="nav-links">
-            <li className="nav-item">
-              <NavLink 
-                to="/" 
-                className={getLinkClass} 
-                onClick={() => setMenuOpen(false)}
+    <>
+      {/* Mobile Toggle Button */}
+      <button 
+        className="sidebar-toggle"
+        onClick={toggleSidebar}
+      >
+        {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+      </button>
+
+      {/* Sidebar Overlay (for mobile) */}
+      <div 
+        className={`sidebar-overlay ${isOpen ? 'open' : ''}`}
+        onClick={toggleSidebar}
+      ></div>
+
+      {/* Sidebar */}
+      <div className={`sidebar ${isOpen ? 'open' : ''}`}>
+        <div className="sidebar-content">
+          {/* Logo */}
+          <div className="logo-container">
+            <div className="logo">EverAfter Films</div>
+            <div className="logo-subtitle">Capturing Timeless Love Stories</div>
+          </div>
+
+          {/* Navigation */}
+          <nav className="sidebar-nav">
+            <ul>
+              {navItems.map((item, index) => (
+                <li key={index}>
+                  <a 
+                    href={item.path} 
+                    className={`nav-item ${activeItem === item.label ? 'active' : ''}`}
+                    onClick={() => handleNavClick(item.label)}
+                  >
+                    <span className="nav-icon">{item.icon}</span>
+                    <span className="nav-label">{item.label}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Contact Info */}
+          <div className="contact-info">
+            <div className="contact-item">
+              <FiMail className="contact-icon" />
+              <span>contact@everafterfilms.com</span>
+            </div>
+            <div className="contact-item">
+              <FiPhone className="contact-icon" />
+              <span>+1 (555) 123-4567</span>
+            </div>
+          </div>
+
+          {/* Social Links */}
+          <div className="social-links">
+            {socialLinks.map((social, index) => (
+              <a 
+                key={index}
+                href={social.url}
+                className="social-icon"
+                aria-label={social.name}
               >
-                Home
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink 
-                to="/films" 
-                className={getLinkClass} 
-                onClick={() => setMenuOpen(false)}
-              >
-                Films
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink 
-                to="/gallery" 
-                className={getLinkClass} 
-                onClick={() => setMenuOpen(false)}
-              >
-                Gallery
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink 
-                to="/blog" 
-                className={getLinkClass} 
-                onClick={() => setMenuOpen(false)}
-              >
-                Blog
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink 
-                to="/contact" 
-                className={getLinkClass} 
-                onClick={() => setMenuOpen(false)}
-              >
-                Contact
-              </NavLink>
-            </li>
-          </ul>
+                {social.icon}
+              </a>
+            ))}
+          </div>
+
+          {/* Copyright */}
+          <div className="copyright">
+            © {new Date().getFullYear()} EverAfter Films
+          </div>
         </div>
       </div>
-    </nav>
+    </>
   );
 };
 

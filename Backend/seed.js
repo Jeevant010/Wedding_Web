@@ -15,28 +15,28 @@ const sampleWeddings = [
     description: 'A beautiful beach wedding in Malibu',
     image: '/images/sample-wedding1.jpg',
     featured: true,
-    category: 'Beach Wedding'  // Added required category field
+    category: 'Beach Wedding'
   },
   {
     title: 'Priya & Rahul',
     description: 'Traditional ceremony with modern reception',
     image: '/images/sample-wedding2.jpg',
     featured: true,
-    category: 'Traditional Wedding'  // Added required category field
+    category: 'Traditional Wedding'
   },
   {
     title: 'Emma & James',
     description: 'Intimate garden wedding in spring',
     image: '/images/sample-wedding3.jpg',
     featured: true,
-    category: 'Garden Wedding'  // Added required category field
+    category: 'Garden Wedding'
   },
   {
     title: 'Alex & Jordan',
     description: 'Urban rooftop celebration',
     image: '/images/sample-wedding4.jpg',
-    featured: false,
-    category: 'Urban Wedding'  // Added required category field
+    featured: false, // Change to true if you want it displayed
+    category: 'Urban Wedding'
   }
 ];
 

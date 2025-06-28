@@ -1,231 +1,238 @@
-.site-header {
+/* src/components/WeddingFilmerSidebar.css */
+:root {
+  --primary-color: #d4af8f; /* Gold */
+  --secondary-color: #f8f1e9; /* Light cream */
+  --accent-color: #e8c9b2; /* Soft peach */
+  --text-color: #4a3c31; /* Dark brown */
+  --highlight-color: #e6b8a2; /* Blush */
+  --transition: all 0.3s ease;
+}
+
+.sidebar-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
+}
+
+.sidebar-toggle:hover {
+  background: var(--highlight-color);
+  transform: scale(1.05);
+}
+
+.sidebar-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  right: auto; /* Changed from right: 0 */
-  width: 200px; /* Changed from 10% to fixed width */
+  width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+}
+
+.sidebar-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.05);
   z-index: 1000;
-  transition: all 0.4s ease;
-  background-color: black;
-  padding: 50px 0;
-}
-
-.site-header.scrolled {
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 30px 0;
-}
-
-.nav-container {
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%; /* Changed from max-width */
-  height: 100%;
-  padding: 0;
+  overflow-y: auto;
 }
 
-/* Logo styling */
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-content {
+  padding: 30px 25px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .logo-container {
-  margin-bottom: 40px; /* Increased from 15px */
-  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--accent-color);
 }
 
 .logo {
-  height: 80px;
-  width: auto;
-  transition: all 0.3s ease;
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-color);
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  position: relative;
 }
 
-.scrolled .logo {
-  height: 60px;
+.logo::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: var(--primary-color);
 }
 
-/* Navigation styling */
-.main-nav {
-  width: 100%;
-  text-align: center;
+.logo-subtitle {
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px;
+  color: var(--primary-color);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 10px;
 }
 
-.nav-links {
-  display: flex;
-  flex-direction: column; /* Changed to column for vertical menu */
-  justify-content: center;
+.sidebar-nav {
+  flex-grow: 1;
+}
+
+.sidebar-nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  gap: 50px; /* Added gap for vertical spacing */
 }
 
 .nav-item {
-  margin: 0; /* Removed horizontal margin */
-}
-
-.nav-item a {
-  color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  color: var(--text-color);
   text-decoration: none;
-  font-size: 14px;
+  font-family: 'Raleway', sans-serif;
   font-weight: 500;
-  letter-spacing: 4.5px;
-  text-transform: uppercase;
-  padding: 10px 0; /* FIXED: Changed from 100px to 10px */
-  position: relative;
-  transition: all 0.3s ease;
-  font-family: 'Montserrat', sans-serif;
+  transition: var(--transition);
 }
 
-/*On hovering over the link the background color changes*/
-.nav-item a:hover {
-  background-color: rgba(255, 255, 255, 0.238); /* Added subtle background on hover */
-  padding: 10px 50px; /* Maintain padding on hover */
-  border-radius: 5px; /* Added border radius for a softer look */;
+.nav-item:hover {
+  background: var(--secondary-color);
+  color: var(--primary-color);
 }
-/* the background color of whole padding of that active link changes */
-.nav-item a.active {
-  background-color: #dc0505; /* Full red background */
+
+.nav-item.active {
+  background: linear-gradient(to right, var(--secondary-color), white);
+  color: var(--primary-color);
+  font-weight: 600;
+  border-left: 3px solid var(--primary-color);
+}
+
+.nav-icon {
+  margin-right: 15px;
+  font-size: 18px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-info {
+  margin: 30px 0;
+  padding: 20px 0;
+  border-top: 1px solid var(--accent-color);
+  border-bottom: 1px solid var(--accent-color);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.contact-item:last-child {
+  margin-bottom: 0;
+}
+
+.contact-icon {
+  margin-right: 12px;
+  color: var(--primary-color);
+  min-width: 20px;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  transition: var(--transition);
+}
+
+.social-icon:hover {
+  background: var(--primary-color);
   color: white;
-  padding: 10px 50px; /* Match your hover padding */
-  border-radius: 5px;
+  transform: translateY(-3px);
 }
 
-/* Optionally, disable the underline for active items */
-.nav-item a.active::after {
-  width: 0; /* Remove underline for active links */
+.copyright {
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  font-size: 11px;
+  color: #a89a8e;
+  margin-top: auto;
+  padding-top: 20px;
 }
 
-/* You may also want to adjust your hover style to not conflict with active */
-.nav-item a:hover:not(.active) {
-  background-color: rgba(255, 255, 255, 0.238);
-  padding: 10px 50px;
-  border-radius: 5px;
+/* Responsive design */
+@media (min-width: 992px) {
+  .sidebar-toggle {
+    display: none;
+  }
+  
+  .sidebar {
+    transform: translateX(0);
+  }
+  
+  .sidebar-overlay {
+    display: none;
+  }
 }
 
-/* Underline animation effect */
-.nav-item a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 1px;
-  bottom: 0;
-  left: 50%;
-  background-color: #fff;
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-}
-
-.nav-item a:hover::after {
-  width: 70%;
-}
-
-/* Mobile menu toggle */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 21px;
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-} 
-
-.menu-toggle span {
-  display: block;
-  height: 2px;
-  width: 100%;
-  background-color: #fff;
-  transition: all 0.3s ease;
-} 
-
-.menu-toggle span.open:nth-child(1) {
-  transform: translateY(9px) rotate(45deg);
-}
-
-.menu-toggle span.open:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-toggle span.open:nth-child(3) {
-  transform: translateY(-9px) rotate(-45deg);
-}
-
-/* Adjust body padding for sidebar*/
-body {
-  padding-left: 200px; /* Match the sidebar width */
-  padding-top: 0; /* No top padding needed for sidebar */
-}
-
-/* Responsive styles */
- @media (max-width: 768px) {
-  .site-header {
-    width: 100%; /* Full width on mobile */
-    height: auto;
-    padding: 15px 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: auto;
-  }
-
-  .header-container {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .logo-container {
-    margin-bottom: 0;
-    text-align: left;
-  }
-
-  .logo {
-    height: 50px;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
-
-  .main-nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.95);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-    visibility: hidden;
-  }
-
-  .main-nav.active {
-    visibility: visible;
-    max-height: 70vh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  }
-
-  .main-nav.active::-webkit-scrollbar{
-    width: 5px;
-  }
-  .main-nav.active::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
-  }
-  .nav-links {
-    flex-direction: column;
-    padding: 20px 0;
-    padding-bottom: 30px;
-  }
-
-  .nav-item {
-    margin: 10px 0;
-  }
- 
-  body {
-    padding-left: 0; /* No left padding on mobile */
-    padding-top: 80px; /* FIXED: Changed from 800px to 80px */
+@media (max-width: 991px) {
+  .sidebar {
+    box-shadow: 2px 0 25px rgba(0, 0, 0, 0.15);
   }
 }
