@@ -1,11 +1,12 @@
 // Import React library which is needed for JSX syntax
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 // Import GSAP animation library
 import gsap from 'gsap'
 // Import React hooks for effects, refs, and state management
-import { useEffect, useRef, useState } from 'react'
-// Import ScrollTrigger plugin from GSAP for scroll-based animations
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+// Import Link component from React Router for navigation
+import { Link } from 'react-router-dom';
+import '../styles/FeatureWeddings.css';
 
 // Register ScrollTrigger plugin with GSAP to enable its functionality
 gsap.registerPlugin(ScrollTrigger)
@@ -50,35 +51,15 @@ const Featureweddings = () => {
         // Log any errors that occur during fetching
         console.error('Error fetching wedding data:', error)
         // Provide fallback data in case of error
-        setFeaturedWeddings([
-          {
-            id: 1,
-            title: 'Sara & Michael',
-            description: 'A beautiful beach wedding in Malibu',
-            image: '/images/sample-wedding1.jpg'
-          },
-          {
-            id: 2,
-            title: 'Priya & Rahul',
-            description: 'Traditional ceremony with modern reception',
-            image: '/images/sample-wedding2.jpg'
-          },
-          {
-            id: 3,
-            title: 'Emma & James',
-            description: 'Intimate garden wedding in spring',
-            image: '/images/sample-wedding3.jpg'
-          }
-        ])
       } finally {
-        // Set loading to false whether fetch succeeded or failed
+        // Set loading to false when fetch completes (success or error)
         setLoading(false)
       }
-    }
+    };
     
-    // Call the fetch function when component mounts
-    fetchWeddings()
-  }, []) // Empty dependency array means this effect runs only once on mount
+    // Call the fetch function
+    fetchWeddings();
+  }, [API_BASE_URL]); // Empty dependency array means this effect runs only once on mount
 
   // Effect hook for text animation setup
   useEffect(() => {
@@ -105,15 +86,20 @@ const Featureweddings = () => {
         textElement.innerHTML = '' 
         
         // Split text into individual characters and create span elements for each
-        const chars = Array.from(text).map(char => {
+        const chars = Array.from(text).map((char, index) => {
           // Create span for each character
           const span = document.createElement('span')
           // Set character content (use non-breaking space for actual spaces)
           span.innerText = char === ' ' ? '\u00A0' : char
           // Start with opacity 0 (invisible)
           span.style.opacity = '0'
-          // Make spans inline-block for better animation control
-          span.style.display = 'inline-block'
+          
+          // Add a subtle individual transform to each character
+          if (index % 3 === 0) {
+            span.style.transform = 'translateY(2px)'
+          } else if (index % 3 === 1) {
+            span.style.transform = 'translateY(-2px)'
+          }
           
           // Add spacing for space characters
           if (char === ' ') {
@@ -133,17 +119,21 @@ const Featureweddings = () => {
             trigger: element, // Element that triggers the animation
             start: 'top 80%', // Start animation when top of element hits 80% down the viewport
             end: 'top 40%', // End animation when top of element hits 40% down the viewport
-            scrub: 0.5, // Smooth animation that follows scroll position with 0.5s delay
+            scrub: false, // Change to false for a smoother animation
             toggleActions: 'play none none reverse' // Controls how animation plays/reverses on scroll
           }
         })
         
-        // Add animation to timeline: fade in each character one by one
+        // Add more complex animation to timeline
         tl.to(chars, {
           opacity: 1, // Animate to fully visible
-          duration: 0.05, // Duration per character
-          stagger: 0.02, // Time between each character animation
-          ease: 'power1.inOut' // Easing function for smooth motion
+          y: 0, // Reset any Y offset
+          duration: 0.03, // Duration per character
+          stagger: {
+            each: 0.03, // Time between each character animation
+            from: "random" // Animate in random order for more interest
+          },
+          ease: 'power2.out' // Easing function for smooth motion
         })  
       }
     }, 500) // 500ms delay to ensure DOM is ready
@@ -155,70 +145,103 @@ const Featureweddings = () => {
       // Kill all ScrollTrigger instances to prevent memory leaks
       ScrollTrigger.getAll().forEach(trigger => trigger.kill())
     }
-  }, []) // Empty dependency array means this runs once on mount
+  }, [])
+
+  // Card animation
+  useEffect(() => {
+    if (!loading && featuredWeddings.length > 0) {
+      const cards = document.querySelectorAll('.feature-wedding-box');
+      
+      gsap.fromTo(cards, 
+        { y: 50, opacity: 0 },
+        { 
+          y: 0, 
+          opacity: 1, 
+          duration: 0.6, 
+          stagger: 0.1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.feature-weddings-container',
+            start: 'top 80%',
+          }
+        }
+      );
+    }
+  }, [loading, featuredWeddings]);
   
   // Component JSX render output
   return (
     // Main container div with ref for animation targeting
-    <div className='feature-weddings' ref={featureRef} style={{ 
-      padding: '30px', // Inner spacing
-      margin: '50px 0', // Vertical margin
-      backgroundColor: 'rgba(255,255,255,0.1)', // Slight white background
-      borderRadius: '8px', // Rounded corners
-      minHeight: '100px', // Minimum height
-      position: 'relative' // For positioned elements inside
-    }}>
-      {/* Animated tagline paragraph */}
-      <p ref={textRef} style={{ textAlign: 'center', fontSize: '24px', marginBottom: '20px' }}>
-        Our Films brings people together, capturing the essence of love and celebration.
-      </p>
+    <div className="feature-weddings" ref={featureRef}>
+      {/* Animated tagline with decorative elements */}
+      <div className="tagline-container">
+        {/* Decorative quote mark */}
+        <svg className="quote-mark quote-mark-left" width="40" height="40" viewBox="0 0 24 24">
+          <path d="M10,7L8,11H11V17H5V11L7,7H10M18,7L16,11H19V17H13V11L15,7H18Z" 
+                fill="#d4a373" opacity="0.6" />
+        </svg>
+        
+        {/* Animated text with ref for GSAP targeting */}
+        <p ref={textRef} className="feature-tagline">
+          Our Films brings people together, capturing the essence of love and celebration.
+        </p>
+        
+        {/* Matching closing quote mark */}
+        <svg className="quote-mark quote-mark-right" width="40" height="40" viewBox="0 0 24 24">
+          <path d="M14,17L16,13H13V7H19V13L17,17H14M6,17L8,13H5V7H11V13L9,17H6Z" 
+                fill="#d4a373" opacity="0.6" />
+        </svg>
+      </div>
+
       {/* Header section with title */}
-      <div className='feature-weddings-header' style={{
-        display: 'flex',
-        marginBottom: '20px'
-      }}>
+      <div className="feature-weddings-header">
         {/* Section title */}
-        <h2 style={{ marginBottom: '15px' }}>Featured Weddings</h2>
+        <h2>Featured Weddings</h2>
       </div>
       
       {/* Grid container for wedding cards */}
-      <div className='feature-weddings-container' style={{
-        display: 'grid', // Grid layout
-        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', // Responsive grid columns
-        gap: '20px', // Space between grid items
-        marginTop: '30px' // Space above the grid
-      }}>
+      <div className="feature-weddings-container">
         {/* Conditional rendering based on loading state */}
         {loading ? (
           // Show loading message while data is being fetched
-          <div style={{ textAlign: 'center', gridColumn: '1 / -1' }}>Loading wedding data...</div>
+          <div className="loading-message">Loading wedding data...</div>
         ) : (
-          // Map through wedding data to create cards when loaded
+          // Map through wedding data to create clickable cards when loaded
           featuredWeddings.map((wedding, index) => (
-            // Individual wedding card (with fallback for missing id)
-            <div key={wedding.id || index} className='feature-wedding-box' style={{
-              padding: '20px', // Inner spacing
-              backgroundColor: '#fff', // White background
-              borderRadius: '8px', // Rounded corners
-              boxShadow: '0 2px 4px rgba(0,0,0,0.1)' // Subtle shadow
-            }}>
-              {/* Wedding image */}
-              <img 
-                src={wedding.image} 
-                alt={wedding.title} 
-                style={{
-                  width: '100%', // Full width of container
-                  height: '200px', // Fixed height
-                  objectFit: 'cover', // Ensure image covers area without distortion
-                  borderRadius: '8px', // Rounded corners
-                  marginBottom: '10px' // Space below image
-                }} 
-              />
-              {/* Wedding couple names */}
-              <h3 style={{ margin: '0 0 10px' }}>{wedding.title}</h3>
-              {/* Wedding description */}
-              <p style={{ margin: '0' }}>{wedding.description}</p>
-            </div>
+            // Use Link component for navigation to individual wedding pages
+            <Link 
+              // Generate a unique React key using the wedding ID if available, or fall back to the array index
+              key={wedding.id || index}
+              
+              // Define the route destination for when the card is clicked
+              // This creates a dynamic URL path to a specific wedding detail page
+              // For example: "/weddings/123" where 123 is the wedding ID
+              // If no ID exists, it will use the array index instead
+              to={`/weddings/${wedding.id || index}`}
+              className="feature-wedding-link"
+            >
+              {/* Individual wedding card */}
+              <div className="feature-wedding-box">
+                {/* Wedding image */}
+                <img 
+                  src={wedding.image} 
+                  alt={wedding.title} 
+                  className="feature-wedding-image"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = 'https://placehold.co/600x400?text=Wedding+Image';
+                  }}
+                />
+                {/* Wedding couple names */}
+                <h3 className="feature-wedding-title">{wedding.title}</h3>
+                {/* Wedding description */}
+                <p className="feature-wedding-description">{wedding.description}</p>
+                {/* View details button or indicator */}
+                <div className="view-details">
+                  View Details →
+                </div>
+              </div>
+            </Link>
           ))
         )}
       </div>
