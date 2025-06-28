@@ -3,7 +3,7 @@
   --primary-color: #d4af8f; /* Gold */
   --secondary-color: #f8f1e9; /* Light cream */
   --accent-color: #e8c9b2; /* Soft peach */
-  --text-color: #4a3c31; /* Dark brown */
+  --text-color: #ffffff; /* Dark brown */
   --highlight-color: #e6b8a2; /* Blush */
   --transition: all 0.3s ease;
 }
@@ -14,7 +14,7 @@
   left: 20px;
   z-index: 1001;
   background: var(--primary-color);
-  color: white;
+  color: rgb(0, 0, 0);
   border: none;
   border-radius: 50%;
   width: 40px;
@@ -56,7 +56,7 @@
   left: 0;
   width: 280px;
   height: 100%;
-  background: white;
+  background: rgb(0, 0, 0);
   box-shadow: 2px 0 15px rgba(0, 0, 0, 0.05);
   z-index: 1000;
   transform: translateX(-100%);

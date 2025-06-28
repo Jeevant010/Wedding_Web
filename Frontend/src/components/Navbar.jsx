@@ -52,7 +52,7 @@ const Navbar = () => {
         <div className="sidebar-content">
           {/* Logo */}
           <div className="logo-container">
-            <div className="logo">EverAfter Films</div>
+            <div className="logo">Wedding web Films</div>
             <div className="logo-subtitle">Capturing Timeless Love Stories</div>
           </div>
 
@@ -78,7 +78,7 @@ const Navbar = () => {
           <div className="contact-info">
             <div className="contact-item">
               <FiMail className="contact-icon" />
-              <span>contact@everafterfilms.com</span>
+              <span>contact@weddingweb.com</span>
             </div>
             <div className="contact-item">
               <FiPhone className="contact-icon" />
@@ -102,7 +102,7 @@ const Navbar = () => {
 
           {/* Copyright */}
           <div className="copyright">
-            © {new Date().getFullYear()} EverAfter Films
+            © {new Date().getFullYear()} Weddingweb Films
           </div>
         </div>
       </div>
