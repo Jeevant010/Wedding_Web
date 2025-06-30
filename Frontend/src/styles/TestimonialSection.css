@@ -1,7 +1,6 @@
-/*
- * the code for testimonial slider with images, text, and names in a circular format with shadow effect
- */
-.testimonial-slider {
+
+
+/* .testimonial-slider {
   display: block;
   padding:10px 10px;
   overflow: hidden;
@@ -9,8 +8,8 @@
   position: relative;
   border-radius: 10px;    
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: aquamarine;
-} 
+  background-color: rgb(178, 145, 37);
+}  */
 
 /* testimonial items should be in grid format */
 .testimonial-item {
@@ -26,9 +25,7 @@
     padding: 20px;
     width: 300px;
     height: 300px;
-    /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
-    /* grid-template-rows: repeat(auto-fill, minmax(300px, 1    fr)); */
-    /* grid-gap: 20px; */       
+         
    ;
 }
 
@@ -40,16 +37,12 @@
   object-fit: cover;
 }
 
-/* .testimonial-text {
-  background: white;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-} */
+
 
 .testimonial-section {
-  padding: 80px 40px;
-  background-color: #fafafa;
+  padding: 50px 40px ;
+  background-color: #e5fbd4;
+  border-radius: 10px;
 }
 
 .testimonial-header {

@@ -2,7 +2,7 @@ import React from 'react'
 
 export const FilmPage = () => {
   return (
-    <div>Films</div>
+    <div>Films dwd </div>
   )
 }
 export default FilmPage;

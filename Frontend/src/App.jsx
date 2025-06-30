@@ -6,12 +6,10 @@ import HomePage from './pages/HomePage'
 import Navbar from './components/Navbar'
 import AboutPage from './pages/AboutPage' 
 import ContactPage from './pages/ContactPage' 
-import GalleryPage from './pages/GalleryPage' 
 import BlogPage from './pages/BlogPage'
 import FilmPage from './pages/FilmPage'
 // import FeatureWeddings from './components/Featureweddings'
 import './App.css' 
-
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   
@@ -32,11 +30,10 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="about" element={<AboutPage />} />
-            <Route path="contact" element={<ContactPage />} />
-            <Route path='/gallery' element={<GalleryPage />} />
-            <Route path='/blog' element={<BlogPage />} />
             <Route path='/films' element={<FilmPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path='/blog' element={<BlogPage />} />
             
           </Routes>
         </main>

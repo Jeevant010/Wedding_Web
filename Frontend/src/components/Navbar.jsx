@@ -1,12 +1,26 @@
 // src/components/WeddingFilmerSidebar.jsx
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { FiHome, FiFilm, FiCamera, FiHeart, FiMail, FiPhone, FiMenu, FiX } from 'react-icons/fi';
 import { FaVimeoV, FaInstagram, FaPinterestP } from 'react-icons/fa';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState('Home');
+  const location = useLocation();
+  
+  // Determine active item based on current path
+  const getActiveItem = () => {
+    const path = location.pathname;
+    if (path === '/') return 'Home';
+    if (path === '/films') return 'Our Films';
+    if (path === '/process') return 'Process';
+    if (path === '/stories') return 'Love Stories';
+    if (path === '/contact') return 'Contact';
+    return '';
+  };
+  
+  const [activeItem, setActiveItem] = useState(getActiveItem());
 
   const toggleSidebar = () => setIsOpen(!isOpen);
   
@@ -15,20 +29,20 @@ const Navbar = () => {
     setIsOpen(false);
   };
 
-  // Navigation data
+  // Navigation data with actual routes
   const navItems = [
-    { path: '#', label: 'Home', icon: <FiHome /> },
-    { path: '#', label: 'Our Films', icon: <FiFilm /> },
-    { path: '#', label: 'Process', icon: <FiCamera /> },
-    { path: '#', label: 'Love Stories', icon: <FiHeart /> },
-    { path: '#', label: 'Contact', icon: <FiMail /> }
+    { path: '/', label: 'Home', icon: <FiHome /> },
+    { path: '/films', label: 'Our Films', icon: <FiFilm /> },
+    { path: '/process', label: 'Process', icon: <FiCamera /> },
+    { path: '/stories', label: 'Love Stories', icon: <FiHeart /> },
+    { path: '/contact', label: 'Contact', icon: <FiMail /> }
   ];
 
   // Social links data
   const socialLinks = [
-    { url: '#', icon: <FaVimeoV size={16} />, name: 'Vimeo' },
-    { url: '#', icon: <FaInstagram size={16} />, name: 'Instagram' },
-    { url: '#', icon: <FaPinterestP size={16} />, name: 'Pinterest' }
+    { url: 'https://vimeo.com', icon: <FaVimeoV size={16} />, name: 'Vimeo' },
+    { url: 'https://instagram.com', icon: <FaInstagram size={16} />, name: 'Instagram' },
+    { url: 'https://pinterest.com', icon: <FaPinterestP size={16} />, name: 'Pinterest' }
   ];
 
   return (
@@ -61,14 +75,14 @@ const Navbar = () => {
             <ul>
               {navItems.map((item, index) => (
                 <li key={index}>
-                  <a 
-                    href={item.path} 
+                  <Link 
+                    to={item.path} 
                     className={`nav-item ${activeItem === item.label ? 'active' : ''}`}
                     onClick={() => handleNavClick(item.label)}
                   >
                     <span className="nav-icon">{item.icon}</span>
                     <span className="nav-label">{item.label}</span>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -93,6 +107,8 @@ const Navbar = () => {
                 key={index}
                 href={social.url}
                 className="social-icon"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={social.name}
               >
                 {social.icon}
