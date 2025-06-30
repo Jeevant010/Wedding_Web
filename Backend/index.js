@@ -29,6 +29,10 @@ app.use('/api/home', homePageRoutes);
 const weddingRoutes = require('./routes/weddings');
 app.use('/api/weddings', weddingRoutes);
 
+app.use('/', (req, res) => {
+    res.send("My server is running");
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
