@@ -1,160 +1,340 @@
 .music-section {
-    padding: 120px 0;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    position: relative;
-    overflow: hidden;
+  padding: 80px 40px;
+  background: #f5f5f5;
+  transition: background 0.8s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.music-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23000000" fill-opacity="0.02"><circle cx="10" cy="10" r="1"/></g></svg>') repeat;
-    pointer-events: none;
+/* Theme backgrounds */
+.music-section.ik-onkar {
+  background: linear-gradient(135deg, #8B0000 0%, #A0522D 50%, #D2B48C 100%);
+  color: white;
 }
 
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-    position: relative;
-    z-index: 1;
+.music-section.vekheya {
+  background: linear-gradient(135deg, #B22222 0%, #DC143C 50%, #FFD700 100%);
+  color: white;
 }
 
-.music-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 80px;
-    margin-bottom: 60px;
+.music-section.sadiyaan {
+  background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #45B7D1 100%);
+  color: white;
 }
 
-.text-content {
-    flex: 1;
-    max-width: 600px;
+.music-section.mangalyam {
+  background: linear-gradient(135deg, #DAA520 0%, #CD853F 50%, #8B4513 100%);
+  color: white;
+}
+
+.music-section.tu-mila {
+  background: linear-gradient(135deg, #98D8E8 0%, #F7DC6F 50%, #85C1E9 100%);
+  color: #333;
+}
+
+.music-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.music-text-content {
+  flex: 1;
+  max-width: 500px;
 }
 
 .section-label {
-    font: 500 14px/1 sans-serif;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  opacity: 0.8;
 }
 
-.main-title {
-    font: 400 clamp(2.5rem, 4vw, 3.5rem)/1.2 'Georgia', serif;
-    color: #2c3e50;
-    margin-bottom: 30px;
+.music-title {
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 20px;
 }
 
 .highlight {
-    color: #ff4757;
-    font-weight: 500;
+  color: #ff4444;
+  font-weight: 600;
 }
 
-.description {
-    font: 400 16px/1.8 sans-serif;
-    color: #666;
-    margin: 0;
+.music-description {
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.9;
 }
 
 .vinyl-container {
-    flex-shrink: 0;
-    position: relative;
+  position: relative;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.vinyl-record {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
-    border-radius: 50%;
-    position: relative;
-    box-shadow: 
-        0 0 0 8px #333,
-        0 20px 40px rgba(0, 0, 0, 0.3),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-    overflow: hidden;
+.vinyl-disk {
+  width: 300px;
+  height: 300px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  position: relative;
+  transition: transform 0.3s ease;
+  background: radial-gradient(circle, #1a1a1a 0%, #333 50%, #1a1a1a 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.vinyl-record::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 90%;
-    height: 90%;
-    background: url('/images/sample-wedding1.jpg') center/cover;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0.7;
-    mix-blend-mode: overlay;
+.vinyl-disk.spinning {
+  animation: spin 3s linear infinite;
 }
 
-.vinyl-record::after {
-    content: '';
-    position: absolute;
-    inset: 10px;
-    border-radius: 50%;
-    background: repeating-conic-gradient(
-        from 0deg at center,
-        transparent 0deg,
-        rgba(255, 255, 255, 0.03) 1deg,
-        transparent 2deg
-    );
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .vinyl-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle, #ff4757 0%, #d63447 100%);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 
-        0 0 0 2px #000,
-        0 4px 8px rgba(0, 0, 0, 0.3),
-        inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background: #8B0000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.wedding-filmer-logo {
-    color: white;
-    font: 600 10px/1.1 'Arial', sans-serif;
-    text-align: center;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+.vinyl-label {
+  text-align: center;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
-    .music-content { gap: 60px; }
-    .vinyl-record { width: 350px; height: 350px; }
-    .vinyl-center { width: 100px; height: 100px; }
-    .wedding-filmer-logo { font-size: 9px; }
+.vinyl-grooves {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(255, 255, 255, 0.1) 2deg,
+    transparent 4deg
+  );
 }
 
+.vinyl-background-roses {
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 500px;
+  height: 500px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="8" fill="%23ff4444" opacity="0.6"/><circle cx="75" cy="25" r="8" fill="%23ff4444" opacity="0.6"/><circle cx="25" cy="75" r="8" fill="%23ff4444" opacity="0.6"/><circle cx="75" cy="75" r="8" fill="%23ff4444" opacity="0.6"/></svg>') repeat;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.music-cards-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.music-cards-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.music-cards-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.music-card {
+  min-width: 250px;
+  height: 350px;
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.music-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.music-card.active {
+  transform: scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.3s ease;
+}
+
+/* Card themes */
+.music-card.ik-onkar .card-background {
+  background: linear-gradient(135deg, #8B0000 0%, #A0522D 100%);
+}
+
+.music-card.vekheya .card-background {
+  background: linear-gradient(135deg, #B22222 0%, #FFD700 100%);
+}
+
+.music-card.sadiyaan .card-background {
+  background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+}
+
+.music-card.mangalyam .card-background {
+  background: linear-gradient(135deg, #DAA520 0%, #8B4513 100%);
+}
+
+.music-card.tu-mila .card-background {
+  background: linear-gradient(135deg, #98D8E8 0%, #F7DC6F 100%);
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  padding: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.play-button {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.play-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.track-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.track-subtitle {
+  font-size: 16px;
+  opacity: 0.9;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.track-artist {
+  font-size: 14px;
+  opacity: 0.8;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  color:black;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  font-size: 34px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-btn:hover {
+  background: rgb(249, 0, 0);
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.scroll-left {
+  left: -25px;
+}
+
+.scroll-right {
+  right: -25px;
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
-    .music-section { padding: 80px 0; }
-    .container { padding: 0 20px; }
-    .music-content { 
-        flex-direction: column;
-        gap: 40px;
-        text-align: center;
-    }
-    .vinyl-record { width: 280px; height: 280px; }
-    .vinyl-center { width: 80px; height: 80px; }
-    .wedding-filmer-logo { font-size: 8px; }
-    .description br { display: none; }
-}
-
-@media (max-width: 480px) {
-    .music-section { padding: 60px 0; }
-    .container { padding: 0 15px; }
-    .vinyl-record { width: 240px; height: 240px; }
-    .vinyl-center { width: 70px; height: 70px; }
-    .wedding-filmer-logo { font-size: 7px; }
+  .music-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  
+  .vinyl-container {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .vinyl-disk {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .music-title {
+    font-size: 36px;
+  }
+  
+  .music-card {
+    min-width: 200px;
+    height: 280px;
+  }
+  
+  .scroll-btn {
+    display: none;
+  }
 }

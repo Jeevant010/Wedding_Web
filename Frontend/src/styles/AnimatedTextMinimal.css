@@ -1,0 +1,13 @@
+.animated-text-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.05"><circle cx="10" cy="10" r="2"/></g></svg>') repeat;
+    pointer-events: none;
+}
+
+/* Ensure Dancing Script font is applied */
+.dancing-text, .dancing-text .letter {
+    font-family: 'Dancing Script', cursive !important;
+    font-weight: 600 !important;
+}

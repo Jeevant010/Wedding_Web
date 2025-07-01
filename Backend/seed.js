@@ -1,13 +1,22 @@
 const mongoose = require('mongoose');
 const WeddingService = require('./models/WeddingService');
 const WeddingFilm = require('./models/WeddingFilm');
+const Footer = require('./models/Footer');
+const Testimonial = require('./models/Testimonial');
+const Promotion = require('./models/Promotion');
+
+// Import data from data files
+const { footerData } = require('./data/footerData');
+const { testimonials } = require('./data/testimonialData');
+const { promotionData } = require('./data/promotionData');
+
 require('dotenv').config();
 
-// Use the same connection string as in index.js
-const MONGODB_URI = `mongodb+srv://Deepesh:${process.env.MONGO_PASSWORD}@cluster0.4l8pl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+// Use local MongoDB connection
+const MONGODB_URI = 'mongodb://localhost:27017/wedding_web';
 
 mongoose.connect(MONGODB_URI)
-  .then(() => console.log('MongoDB Atlas connected for seeding'))
+  .then(() => console.log('MongoDB connected for seeding'))
   .catch(err => console.error('MongoDB connection error:', err));
 
 const sampleWeddings = [
@@ -285,14 +294,56 @@ const seedDatabase = async () => {
     // Clear existing data
     await WeddingService.deleteMany({});
     await WeddingFilm.deleteMany({});
+    await Footer.deleteMany({});
+    await Testimonial.deleteMany({});
+    await Promotion.deleteMany({});
+    
+    console.log('Cleared existing data...');
+    
+    console.log('Cleared existing data...');
     
     // Insert new data
     await WeddingService.insertMany(sampleWeddings);
     await WeddingFilm.insertMany(weddingFilms);
     
+    // Seed footer data
+    await Footer.create({
+      companyInfo: {
+        name: footerData.companyInfo.name,
+        tagline: footerData.companyInfo.tagline,
+        copyright: footerData.companyInfo.copyright
+      },
+      contactInfo: footerData.contactInfo,
+      socialLinks: footerData.socialLinks.map(link => ({
+        name: link.name,
+        url: link.url,
+        icon: link.icon
+      })),
+      legalLinks: footerData.legalLinks
+    });
+    
+    // Seed testimonials
+    const testimonialsWithId = testimonials.map((testimonial, index) => ({
+      ...testimonial,
+      testimonialId: testimonial.id,
+      _id: undefined // Let MongoDB generate the _id
+    }));
+    await Testimonial.insertMany(testimonialsWithId);
+    
+    // Seed promotions
+    const promotionsWithId = promotionData.map((promotion, index) => ({
+      ...promotion,
+      promotionId: promotion.id,
+      _id: undefined // Let MongoDB generate the _id
+    }));
+    await Promotion.insertMany(promotionsWithId);
+    
     console.log('Database seeded successfully!');
     console.log(`Inserted ${sampleWeddings.length} wedding services`);
     console.log(`Inserted ${weddingFilms.length} wedding films`);
+    console.log(`Inserted 1 footer data`);
+    console.log(`Inserted ${testimonials.length} testimonials`);
+    console.log(`Inserted ${promotionData.length} promotions`);
     process.exit(0);
   } catch (error) {
     console.error('Error seeding database:', error);

@@ -15,12 +15,15 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// MongoDB Connection
-const MONGODB_URI = `mongodb+srv://Deepesh:${process.env.MONGO_PASSWORD}@cluster0.4l8pl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+// Static file serving for media assets
+app.use('/static', express.static('public'));
 
-// Connect to MongoDB Atlas
+// MongoDB Connection
+const MONGODB_URI = 'mongodb://localhost:27017/wedding_web';
+
+// Connect to local MongoDB
 mongoose.connect(MONGODB_URI)
-  .then(() => console.log('MongoDB Atlas connected successfully'))
+  .then(() => console.log('MongoDB connected successfully'))
   .catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
@@ -30,6 +33,14 @@ const weddingRoutes = require('./routes/weddings');
 app.use('/api/weddings', weddingRoutes);
 const weddingFilmRoutes = require('./routes/weddingFilms');
 app.use('/api/wedding-films', weddingFilmRoutes);
+
+// Data API Routes
+const testimonialRoutes = require('./routes/testimonials');
+app.use('/api/testimonials', testimonialRoutes);
+const promotionRoutes = require('./routes/promotions');
+app.use('/api/promotions', promotionRoutes);
+const footerRoutes = require('./routes/footer');
+app.use('/api/footer', footerRoutes);
 
 app.use('/', (req, res) => {
     res.send("My server is running");
