@@ -1,119 +1,66 @@
-/* src/components/WeddingFilmerSidebar.css */
-:root {
-  --primary-color: #d4af8f; /* Gold */
-  --secondary-color: #f8f1e9; /* Light cream */
-  --accent-color: #e8c9b2; /* Soft peach */
-  --text-color: #ffffff; /* Dark brown */
-  --highlight-color: #e6b8a2; /* Blush */
-  --transition: all 0.3s ease;
-}
+/* Navbar.css - The Wedding Filmer Design */
 
-.sidebar-toggle {
+/* Left Sidebar */
+.left-sidebar {
   position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 1001;
-  background: var(--primary-color);
-  color: rgb(0, 0, 0);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: var(--transition);
-}
-
-.sidebar-toggle:hover {
-  background: var(--highlight-color);
-  transform: scale(1.05);
-}
-
-.sidebar-overlay {
-  position: fixed;
-  top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-  opacity: 0;
-  visibility: hidden;
-  transition: var(--transition);
-}
-
-.sidebar-overlay.open {
-  opacity: 1;
-  visibility: visible;
-}
-
-.sidebar {
-  position: fixed;
   top: 0;
-  left: 0;
-  width: 280px;
-  height: 100%;
-  background: rgb(0, 0, 0);
-  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.05);
+  width: 200px;
+  height: 100vh;
+  background: #1a1a1a;
   z-index: 1000;
-  transform: translateX(-100%);
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-}
-
-.sidebar.open {
-  transform: translateX(0);
 }
 
 .sidebar-content {
-  padding: 30px 25px;
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding: 40px 20px 30px;
 }
 
+/* Logo */
 .logo-container {
-  margin-bottom: 40px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--accent-color);
+  margin-bottom: 60px;
 }
 
-.logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--text-color);
-  letter-spacing: 1px;
-  margin-bottom: 5px;
-  position: relative;
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-.logo::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 50px;
-  height: 2px;
-  background: var(--primary-color);
-}
-
-.logo-subtitle {
-  font-family: 'Raleway', sans-serif;
-  font-size: 12px;
-  color: var(--primary-color);
-  letter-spacing: 1.5px;
+.logo-the,
+.logo-wedding,
+.logo-filmer {
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  color: white;
+  line-height: 1;
   text-transform: uppercase;
-  margin-top: 10px;
 }
 
+.logo-the {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+.logo-wedding {
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  margin: 2px 0;
+}
+
+.logo-filmer {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+/* Navigation */
 .sidebar-nav {
-  flex-grow: 1;
+  flex: 1;
 }
 
 .sidebar-nav ul {
@@ -122,117 +69,238 @@
   margin: 0;
 }
 
+.sidebar-nav li {
+  margin-bottom: 8px;
+}
+
 .nav-item {
   display: flex;
   align-items: center;
-  padding: 12px 15px;
-  margin-bottom: 5px;
-  border-radius: 4px;
-  color: var(--text-color);
+  padding: 12px 16px;
+  color: #888;
   text-decoration: none;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 500;
-  transition: var(--transition);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 400;
 }
 
 .nav-item:hover {
-  background: var(--secondary-color);
-  color: var(--primary-color);
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .nav-item.active {
-  background: linear-gradient(to right, var(--secondary-color), white);
-  color: var(--primary-color);
-  font-weight: 600;
-  border-left: 3px solid var(--primary-color);
+  color: #ff4757;
+  background: rgba(255, 71, 87, 0.1);
+}
+
+.nav-item.active .nav-icon {
+  color: #ff4757;
 }
 
 .nav-icon {
-  margin-right: 15px;
-  font-size: 18px;
-  width: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.contact-info {
-  margin: 30px 0;
-  padding: 20px 0;
-  border-top: 1px solid var(--accent-color);
-  border-bottom: 1px solid var(--accent-color);
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-  font-family: 'Raleway', sans-serif;
-  font-size: 14px;
-  color: var(--text-color);
-}
-
-.contact-item:last-child {
-  margin-bottom: 0;
-}
-
-.contact-icon {
   margin-right: 12px;
-  color: var(--primary-color);
-  min-width: 20px;
+  font-size: 1rem;
 }
 
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
+.nav-label {
+  font-size: 0.9rem;
+}
+
+/* Sidebar Bottom */
+.sidebar-bottom {
+  margin-top: auto;
+  text-align: center;
+}
+
+.sidebar-message {
   margin-bottom: 20px;
 }
 
-.social-icon {
+.sidebar-message p {
+  color: #ccc;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.enquire-btn-sidebar {
+  display: inline-block;
+  background: #ff4757;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.enquire-btn-sidebar:hover {
+  background: #ff3742;
+  transform: translateY(-1px);
+}
+
+/* Top Header */
+.top-header {
+  position: fixed;
+  top: 0;
+  left: 200px;
+  right: 0;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--secondary-color);
-  color: var(--primary-color);
-  transition: var(--transition);
+  justify-content: space-between;
+  padding: 0 40px;
+  z-index: 999;
 }
 
-.social-icon:hover {
-  background: var(--primary-color);
+/* Search Container */
+.search-container {
+  flex: 1;
+  max-width: 600px;
+  margin-right: 40px;
+}
+
+.search-form {
+  position: relative;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 20px 12px 50px;
+  border: none;
+  background: #f5f5f5;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  background: #eee;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+.search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 1.1rem;
+}
+
+/* Header Buttons */
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-btn {
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.faqs-btn {
+  background: #000;
   color: white;
-  transform: translateY(-3px);
 }
 
-.copyright {
-  text-align: center;
-  font-family: 'Raleway', sans-serif;
-  font-size: 11px;
-  color: #a89a8e;
-  margin-top: auto;
-  padding-top: 20px;
+.faqs-btn:hover {
+  background: #333;
 }
 
-/* Responsive design */
-@media (min-width: 992px) {
-  .sidebar-toggle {
-    display: none;
+.enquire-btn {
+  background: #ff4757;
+  color: white;
+}
+
+.enquire-btn:hover {
+  background: #ff3742;
+  transform: translateY(-1px);
+}
+
+/* Layout adjustments for main content */
+.main-content {
+  margin-left: 200px;
+  padding-top: 80px;
+  min-height: 100vh;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .left-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
   }
   
-  .sidebar {
+  .left-sidebar.open {
     transform: translateX(0);
   }
   
-  .sidebar-overlay {
-    display: none;
+  .top-header {
+    left: 0;
+    padding: 0 20px;
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .search-container {
+    margin-right: 20px;
+  }
+  
+  .header-buttons {
+    gap: 10px;
+  }
+  
+  .header-btn {
+    padding: 8px 16px;
+    font-size: 0.8rem;
   }
 }
 
-@media (max-width: 991px) {
-  .sidebar {
-    box-shadow: 2px 0 25px rgba(0, 0, 0, 0.15);
+@media (max-width: 480px) {
+  .sidebar-content {
+    padding: 30px 15px 20px;
+  }
+  
+  .top-header {
+    padding: 0 15px;
+    height: 70px;
+  }
+  
+  .main-content {
+    padding-top: 70px;
+  }
+  
+  .search-container {
+    margin-right: 15px;
+  }
+  
+  .search-input {
+    padding: 10px 15px 10px 40px;
+    font-size: 0.8rem;
+  }
+  
+  .header-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
   }
 }

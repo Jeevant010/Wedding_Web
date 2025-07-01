@@ -1,0 +1,236 @@
+.music-section {
+    padding: 120px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.music-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23000000" fill-opacity="0.02"><circle cx="10" cy="10" r="1"/></g></svg>') repeat;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.music-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    margin-bottom: 60px;
+}
+
+.text-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.section-label {
+    font-size: 14px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.main-title {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 400;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    line-height: 1.2;
+    font-family: 'Georgia', serif;
+}
+
+.highlight {
+    color: #ff4757;
+    font-weight: 500;
+}
+
+.description {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.8;
+    margin: 0;
+    font-weight: 400;
+}
+
+.vinyl-container {
+    flex-shrink: 0;
+    position: relative;
+}
+
+.vinyl-record {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 
+        0 0 0 8px #333,
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.vinyl-record::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    height: 90%;
+    background: url('/images/sample-wedding1.jpg') center/cover;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.7;
+    mix-blend-mode: overlay;
+}
+
+.vinyl-record::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border-radius: 50%;
+    background: repeating-conic-gradient(
+        from 0deg at center,
+        transparent 0deg,
+        rgba(255, 255, 255, 0.03) 1deg,
+        transparent 2deg
+    );
+}
+
+.vinyl-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, #ff4757 0%, #d63447 100%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+        0 0 0 2px #000,
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.logo-container {
+    text-align: center;
+}
+
+.wedding-filmer-logo {
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.1;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-family: 'Arial', sans-serif;
+}
+
+.logo-text {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .music-content {
+        gap: 60px;
+    }
+    
+    .vinyl-record {
+        width: 350px;
+        height: 350px;
+    }
+    
+    .vinyl-center {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .wedding-filmer-logo {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 768px) {
+    .music-section {
+        padding: 80px 0;
+    }
+    
+    .container {
+        padding: 0 20px;
+    }
+    
+    .music-content {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .vinyl-record {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .vinyl-center {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .wedding-filmer-logo {
+        font-size: 8px;
+    }
+    
+    .description br {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .music-section {
+        padding: 60px 0;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .vinyl-record {
+        width: 240px;
+        height: 240px;
+    }
+    
+    .vinyl-center {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .wedding-filmer-logo {
+        font-size: 7px;
+    }
+    
+    .heart-line-container {
+        height: 150px;
+        margin-top: 20px;
+    }
+}

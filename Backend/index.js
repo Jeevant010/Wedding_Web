@@ -28,6 +28,8 @@ const homePageRoutes = require('./routes/HomePage');
 app.use('/api/home', homePageRoutes);
 const weddingRoutes = require('./routes/weddings');
 app.use('/api/weddings', weddingRoutes);
+const weddingFilmRoutes = require('./routes/weddingFilms');
+app.use('/api/wedding-films', weddingFilmRoutes);
 
 app.use('/', (req, res) => {
     res.send("My server is running");
