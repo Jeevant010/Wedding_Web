@@ -1,10 +1,9 @@
-/* HeroCarousel.css */
-
 .hero-carousel {
   position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  border-radius: 20px;
 }
 
 .carousel-container {
@@ -13,13 +12,9 @@
   height: 100%;
 }
 
-/* Background Video */
 .hero-background {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   overflow: hidden;
   border-radius: 5px;
 }
@@ -39,10 +34,7 @@
 
 .hero-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: linear-gradient(
     135deg,
     rgba(0, 0, 0, 0.6) 0%,
@@ -51,7 +43,6 @@
   );
 }
 
-/* Navigation Arrows */
 .carousel-nav {
   position: absolute;
   top: 50%;
@@ -76,15 +67,9 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.carousel-nav.prev {
-  left: 30px;
-}
+.carousel-nav.prev { left: 30px; }
+.carousel-nav.next { right: 30px; }
 
-.carousel-nav.next {
-  right: 30px;
-}
-
-/* Content */
 .hero-content {
   position: absolute;
   bottom: 80px;
@@ -103,9 +88,7 @@
   align-items: center;
   gap: 15px;
   margin-bottom: 20px;
-  font-family: 'Arial', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 500;
+  font: 500 0.9rem/1 'Arial', sans-serif;
   letter-spacing: 2px;
   text-transform: uppercase;
   opacity: 0.9;
@@ -115,36 +98,27 @@
   color: #fff;
 }
 
-.separator {
-  color: #ccc;
-}
-
+.separator,
 .date {
   color: #ccc;
 }
 
 .wedding-title {
-  font-family: 'Georgia', serif;
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: normal;
+  font: normal clamp(3rem, 8vw, 6rem)/1.1 'Georgia', serif;
   letter-spacing: 3px;
   margin: 0 0 30px 0;
-  line-height: 1.1;
   text-transform: uppercase;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .wedding-description {
-  font-family: 'Arial', sans-serif;
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font: 400 1.1rem/1.6 'Arial', sans-serif;
   margin: 0;
   max-width: 600px;
   opacity: 0.95;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* Slide Indicators */
 .slide-indicators {
   position: absolute;
   bottom: 30px;
@@ -176,87 +150,39 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .hero-content {
-    bottom: 60px;
-    left: 30px;
-    right: 30px;
-  }
-  
-  .wedding-title {
+  .hero-content { bottom: 60px; left: 30px; right: 30px; }
+  .wedding-title { 
     font-size: clamp(2rem, 8vw, 4rem);
     letter-spacing: 2px;
     margin-bottom: 20px;
   }
-  
-  .wedding-description {
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-  
-  .carousel-nav {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .carousel-nav.prev {
-    left: 20px;
-  }
-  
-  .carousel-nav.next {
-    right: 20px;
-  }
-  
-  .slide-indicators {
-    bottom: 20px;
-    right: 30px;
-  }
+  .wedding-description { font-size: 1rem; line-height: 1.5; }
+  .carousel-nav { width: 40px; height: 40px; }
+  .carousel-nav.prev { left: 20px; }
+  .carousel-nav.next { right: 20px; }
+  .slide-indicators { bottom: 20px; right: 30px; }
 }
 
 @media (max-width: 480px) {
-  .hero-content {
-    bottom: 40px;
-    left: 20px;
-    right: 20px;
-  }
-  
-  .wedding-meta {
+  .hero-content { bottom: 40px; left: 20px; right: 20px; }
+  .wedding-meta { 
     font-size: 0.8rem;
     gap: 10px;
     margin-bottom: 15px;
   }
-  
-  .wedding-title {
+  .wedding-title { 
     font-size: clamp(1.8rem, 8vw, 3rem);
     letter-spacing: 1px;
     margin-bottom: 15px;
   }
-  
-  .wedding-description {
-    font-size: 0.9rem;
-    line-height: 1.4;
-  }
-  
-  .carousel-nav {
-    width: 35px;
-    height: 35px;
-  }
-  
-  .carousel-nav.prev {
-    left: 15px;
-  }
-  
-  .carousel-nav.next {
-    right: 15px;
-  }
-  
-  .slide-indicators {
+  .wedding-description { font-size: 0.9rem; line-height: 1.4; }
+  .carousel-nav { width: 35px; height: 35px; }
+  .carousel-nav.prev { left: 15px; }
+  .carousel-nav.next { right: 15px; }
+  .slide-indicators { 
     bottom: 15px;
     right: 20px;
     gap: 8px;
   }
-  
-  .indicator {
-    width: 10px;
-    height: 10px;
-  }
+  .indicator { width: 10px; height: 10px; }
 }

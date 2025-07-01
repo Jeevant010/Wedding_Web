@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-export const FilmPage = () => {
+const FilmPage = () => {
   return (
-    <div>Films dwd </div>
-  )
-}
+    <div>Films</div>
+  );
+};
+
 export default FilmPage;

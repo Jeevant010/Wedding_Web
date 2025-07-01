@@ -14,55 +14,44 @@ const MusicSection = () => {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // Set initial states
-            gsap.set([titleRef.current, subtitleRef.current, descriptionRef.current], {
-                opacity: 0,
-                y: 30
-            });
-
-            gsap.set(vinylRef.current, {
-                opacity: 0,
-                scale: 0.8,
-                rotation: -20
-            });
-
-            // Create timeline
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 70%",
-                    end: "bottom 30%",
-                    toggleActions: "play reverse play reverse"
-                }
-            });
-
+            const textElements = [titleRef.current, subtitleRef.current, descriptionRef.current];
+            
             // Animate text elements
-            tl.to(titleRef.current, {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: "power3.out"
-            })
-            .to(subtitleRef.current, {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: "power3.out"
-            }, "-=0.5")
-            .to(descriptionRef.current, {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: "power3.out"
-            }, "-=0.3")
+            textElements.forEach((el, index) => {
+                gsap.fromTo(el,
+                    { opacity: 0, y: 30 },
+                    { 
+                        opacity: 1, 
+                        y: 0, 
+                        duration: 0.8,
+                        delay: index * 0.2,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: sectionRef.current,
+                            start: "top 70%",
+                            toggleActions: "play reverse play reverse"
+                        }
+                    }
+                );
+            });
+
             // Animate vinyl
-            .to(vinylRef.current, {
-                opacity: 1,
-                scale: 1,
-                rotation: 0,
-                duration: 1,
-                ease: "back.out(1.7)"
-            }, "-=0.5");
+            gsap.fromTo(vinylRef.current,
+                { opacity: 0, scale: 0.8, rotation: -20 },
+                { 
+                    opacity: 1, 
+                    scale: 1, 
+                    rotation: 0,
+                    duration: 1,
+                    delay: 0.4,
+                    ease: "back.out(1.7)",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 70%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
 
             // Continuous vinyl rotation
             gsap.to(vinylRef.current, {
@@ -72,7 +61,6 @@ const MusicSection = () => {
                 repeat: -1,
                 transformOrigin: "center center"
             });
-
         }, sectionRef);
 
         return () => ctx.revert();
@@ -98,10 +86,8 @@ const MusicSection = () => {
                     <div className="vinyl-container" ref={vinylRef}>
                         <div className="vinyl-record">
                             <div className="vinyl-center">
-                                <div className="logo-container">
-                                    <div className="wedding-filmer-logo">
-                                        <span className="logo-text">The<br />Wedding<br />Filmer</span>
-                                    </div>
+                                <div className="wedding-filmer-logo">
+                                    The<br />Wedding<br />Filmer
                                 </div>
                             </div>
                         </div>

@@ -8,16 +8,12 @@
     position: relative;
     overflow: hidden;
     margin-top: 10px;
-    /* margin-bottom: 10px; */
 }
 
 .animated-text-section::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.05"><circle cx="10" cy="10" r="2"/></g></svg>') repeat;
     pointer-events: none;
 }

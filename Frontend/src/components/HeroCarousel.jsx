@@ -6,7 +6,7 @@ const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const videoRef = useRef(null);
 
-  // Sample wedding data - replace with actual data
+  // Wedding data
   const weddings = [
     {
       id: 1,
@@ -34,19 +34,14 @@ const HeroCarousel = () => {
     }
   ];
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % weddings.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + weddings.length) % weddings.length);
-  };
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % weddings.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + weddings.length) % weddings.length);
 
   // Auto-advance slides
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % weddings.length);
-    }, 10000); // Increased interval for videos
+    }, 10000);
     return () => clearInterval(timer);
   }, [weddings.length]);
 
@@ -99,10 +94,7 @@ const HeroCarousel = () => {
             </div>
             
             <h1 className="wedding-title">{currentWedding.title}</h1>
-            
-            <p className="wedding-description">
-              {currentWedding.description}
-            </p>
+            <p className="wedding-description">{currentWedding.description}</p>
           </div>
         </div>
 
