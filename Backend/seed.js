@@ -13,8 +13,7 @@ const { promotionData } = require('./data/promotionData');
 require('dotenv').config();
 
 // Use local MongoDB connection
-const MONGODB_URI = 'mongodb://localhost:27017/wedding_web';
-
+const MONGODB_URI = `mongodb+srv://Deepesh:${process.env.MONGO_PASSWORD}@cluster0.4l8pl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 mongoose.connect(MONGODB_URI)
   .then(() => console.log('MongoDB connected for seeding'))
   .catch(err => console.error('MongoDB connection error:', err));
