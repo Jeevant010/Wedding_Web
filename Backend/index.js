@@ -18,9 +18,7 @@ app.use(express.json());
 // Static file serving for media assets
 app.use('/static', express.static('public'));
 
-// MongoDB Connection
-const MONGODB_URI = 'mongodb://localhost:27017/wedding_web';
-
+const MONGODB_URI = `mongodb+srv://Deepesh:${process.env.MONGO_PASSWORD}@cluster0.4l8pl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 // Connect to local MongoDB
 mongoose.connect(MONGODB_URI)
   .then(() => console.log('MongoDB connected successfully'))
