@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 9000;
 app.use(cors({
     origin : ['http://localhost:5173', 'https://wedding-web-gold.vercel.app'],
     methods : "GET,POST,PUT,DELETE",
-    Credential: true
+    credential: true
 }));
 app.use(express.json());
 
