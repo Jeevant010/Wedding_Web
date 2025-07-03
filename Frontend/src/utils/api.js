@@ -3,7 +3,7 @@ import axios from 'axios';
 // Base API URL - uses environment variable or fallback
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 
     (import.meta.env.PROD
-        ? 'https://your-backend-url.vercel.app/api' 
+        ? 'https://back-wedding-ashy.vercel.app/api' 
         : 'http://localhost:9000/api');
 
 // Create axios instance
