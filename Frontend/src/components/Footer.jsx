@@ -48,7 +48,7 @@ const Footer = () => {
     // Loading state
     if (loading) {
         return (
-            <footer className="bg-gray-900 text-white py-16 px-4 md:px-8">
+            <footer className="bg-black text-white py-16 px-4 md:px-8 shadow-2xl">
                 <div className="max-w-7xl mx-auto">
                     <div className="animate-pulse">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
@@ -62,7 +62,7 @@ const Footer = () => {
                                 </div>
                             </div>
                             <div className="space-y-4">
-                                <div className="h-6 bg-gray-800 rounded w-1/2"></div>
+                                <div className="h-6 bg-black-500 rounded w-1/2"></div>
                                 <div className="space-y-2">
                                     {[1,2,3].map(i => (
                                         <div key={i} className="h-4 bg-gray-800 rounded"></div>
@@ -87,7 +87,7 @@ const Footer = () => {
     // Error state
     if (error || !footerData) {
         return (
-            <footer className="bg-gray-900 text-white py-16 px-4 md:px-8">
+            <footer className="bg-black text-white py-16 px-4 md:px-8">
                 <div className="max-w-7xl mx-auto text-center">
                     <p className="text-gray-400">
                         {error || 'Unable to load footer data'}
@@ -98,7 +98,7 @@ const Footer = () => {
     }
 
     return (
-        <footer className="bg-gray-900 text-white py-16 px-4 md:px-8">
+        <footer className="bg-black text-white py-16 px-4 md:px-8 mb-20 rounded-3xl mt-8">
             <div className="max-w-7xl mx-auto">
                 {/* Main Footer Content */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">

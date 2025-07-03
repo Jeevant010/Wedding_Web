@@ -11,7 +11,7 @@ const WatchTrailerSection = () => {
     const [error, setError] = useState(null);
 
     const API_BASE_URL = import.meta.env.PROD 
-        ? 'https://your-backend-url.vercel.app/api' 
+        ? 'https://back-wedding-ashy.vercel.app/api' 
         : 'http://localhost:9000/api';
 
     const fetchWeddingFilms = useCallback(async () => {

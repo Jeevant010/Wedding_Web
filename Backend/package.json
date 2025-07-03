@@ -18,6 +18,7 @@
     "start": "node seed && node index",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index",
+    "build": "node seed.js && node index",
     "init-data": "node scripts/initSampleData.js",
     "seed": "node seed.js"
   },

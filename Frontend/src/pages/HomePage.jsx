@@ -9,7 +9,10 @@ import '../styles/HomePage.css';
 
 const HomePage = () => {
     return (
-        <div className='homepage'>
+            <>
+            
+            
+        <div className='homepage bg-white'>
             <HeroCarousel />
             <AnimatedText />
             <WatchTrailerSection />
@@ -17,6 +20,13 @@ const HomePage = () => {
             <TestimonialSection />
             <PromotionSection />
         </div>
+            
+            
+            </>
+
+
+
+
     );
 };
 

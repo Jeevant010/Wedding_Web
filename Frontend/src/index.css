@@ -1,3 +1,148 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.flip-btn-3d {
+  perspective: 400px;
+  position: relative;
+  display: inline-block;
+  overflow: visible; /* allow overflow for the flip */
+  height: 2.5rem;    /* enough for both faces */
+  min-width: 100px;
+  vertical-align: middle;
+}
+.flip-btn-3d-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 0.5s cubic-bezier(.4,2,.6,1);
+  transform-style: preserve-3d;
+}
+.flip-btn-3d:hover .flip-btn-3d-inner,
+.flip-btn-3d:focus .flip-btn-3d-inner {
+  transform: rotateX(90deg);
+}
+.flip-btn-3d-front, .flip-btn-3d-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0; top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 1.5rem;
+  backface-visibility: hidden;
+  transition: color 0.3s, background 0.7s;
+  pointer-events: none;
+}
+.flip-btn-3d-front {
+  background: #000;
+  color: #fff;
+  z-index: 2;
+}
+.flip-btn-3d-back {
+  background: #fff;
+  color: #000;
+  transform: rotateX(-90deg);
+  z-index: 1;
+}
+
+.btn-slide-vertical {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  height: 2.5rem; /* match py-2 */
+  min-width: 100px;
+  border-radius: 1.5rem;
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
+  transition: background 0.3s, color 0.3s;
+}
+.btn-slide-vertical .btn-text {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 2.5rem;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: transform 0.35s cubic-bezier(.4,2,.6,1), opacity 0.35s cubic-bezier(.4,2,.6,1);
+  will-change: transform, opacity;
+}
+.btn-slide-vertical .btn-text.top {
+  transform: translateY(0);
+  opacity: 1;
+  z-index: 2;
+}
+.btn-slide-vertical:hover .btn-text.top,
+.btn-slide-vertical:focus .btn-text.top {
+  transform: translateY(100%);
+  opacity: 0;
+}
+.btn-slide-vertical .btn-text.bottom {
+  transform: translateY(-100%);
+  opacity: 0;
+  z-index: 1;
+}
+.btn-slide-vertical:hover .btn-text.bottom,
+.btn-slide-vertical:focus .btn-text.bottom {
+  transform: translateY(0);
+  opacity: 1;
+}
+.font-serif { font-family: 'Playfair Display', serif; }
+.font-cursive { font-family: 'Pacifico', cursive; }
+.torn-paper-top {
+  position: absolute;
+  top: 0; left: 0; width: 100%; z-index: 2; pointer-events: none;
+}
+.torn-paper-bottom {
+  position: absolute;
+  bottom: 0; left: 0; width: 100%; z-index: 2; pointer-events: none;
+}
+.photo-stack img {
+  transition: transform 0.5s cubic-bezier(.4,2,.6,1), box-shadow 0.5s;
+}
+.photo-stack img:hover {
+  transform: translateY(-10px) scale(1.05) rotate(-2deg);
+  box-shadow: 0 10px 40px 0 rgba(0,0,0,0.18);
+}.sidebar-item--active {
+  position: relative;
+  background: #fff !important;
+  color: #e63946 !important;
+  border-radius: 2rem;
+  z-index: 2;
+  overflow: visible;
+}
+.sidebar-item--active .sidebar-icon,
+.sidebar-item--active .sidebar-label {
+  color: #e63946 !important;
+}
+.sidebar-item--active::before,
+.sidebar-item--active::after {
+  content: '';
+  position: absolute;
+  right: -28px;        /* adjust for your sidebar width */
+  width: 56px;         /* controls curve width */
+  height: 36px;        /* controls curve height */
+  background: #fff;
+  z-index: 3;
+}
+.sidebar-item--active::before {
+  top: -18px;
+  border-bottom-left-radius: 36px;
+  border-bottom-right-radius: 36px;
+  box-shadow: 8px 0 0 0 #000; /* black edge for separation */
+}
+.sidebar-item--active::after {
+  bottom: -18px;
+  border-top-left-radius: 36px;
+  border-top-right-radius: 36px;
+  box-shadow: 8px 0 0 0 #000;
+}
