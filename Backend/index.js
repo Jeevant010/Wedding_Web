@@ -33,6 +33,8 @@ const weddingRoutes = require('./routes/weddings');
 app.use('/api/weddings', weddingRoutes);
 const weddingFilmRoutes = require('./routes/weddingFilms');
 app.use('/api/wedding-films', weddingFilmRoutes);
+const filmsRouter = require('./routes/films');
+app.use('/api/films', filmsRouter);
 
 // Data API Routes
 const testimonialRoutes = require('./routes/testimonials');
