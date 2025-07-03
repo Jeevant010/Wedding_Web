@@ -16,6 +16,8 @@ export default {
       fontFamily: {
         'serif': ['Georgia', 'serif'],
         'sans': ['Arial', 'sans-serif'],
+        'serif': ['Playfair Display', 'serif'],
+        'cursive': ['Pacifico', 'cursive'],
         'dancing': ['Dancing Script', 'cursive'],
         'playfair': ['Playfair Display', 'serif'],
         'poppins': ['Poppins', 'sans-serif'],
