@@ -9,7 +9,7 @@ const weddingServiceSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  description: {
+  date: {
     type: String,
     required: true
   },

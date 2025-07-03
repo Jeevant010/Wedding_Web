@@ -1,17 +1,20 @@
 import React from "react";
-import Header from '../Components/Header.jsx' ;
-import Footer from '../Components/Footer.jsx' ;
+// Note: Header and Footer components are not currently available in the project
+// This HOC is currently disabled until Header and Footer components are implemented
 
-const Ourmain = 
-    (Component) => 
-    ({ ...props }) => {
+const Ourmain = (Component) => {
+    const WrappedComponent = ({ ...props }) => {
         return (
             <div>
-                <Header />
+                {/* <Header /> */}
                 <Component {...props} />
-                <Footer />
+                {/* <Footer /> */}
             </div>
         );
     };
+    
+    WrappedComponent.displayName = `Ourmain(${Component.displayName || Component.name})`;
+    return WrappedComponent;
+};
 
 export default Ourmain;

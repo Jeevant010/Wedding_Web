@@ -15,7 +15,7 @@ exports.getSearchSuggestions = async (req, res) => {
       return res.json([]);
     }
 
-    // Find services matching the query in title or description
+    // Find services matching the query in title or date
     // Using case-insensitive regex for better matches
     const suggestions = await WeddingService.find({
       $or: [
@@ -55,7 +55,7 @@ exports.searchServices = async (req, res) => {
     // Text search in multiple fields
     searchCriteria.$or = [
       { title: { $regex: query, $options: 'i' } },
-      { description: { $regex: query, $options: 'i' } },
+      { date: { $regex: query, $options: 'i' } },
       { keywords: { $regex: query, $options: 'i' } }
     ];
     
@@ -66,7 +66,7 @@ exports.searchServices = async (req, res) => {
 
     // Perform the search
     const results = await WeddingService.find(searchCriteria)
-      .select('title description category image pricing.startingPrice rating')
+      .select('title date category image pricing.startingPrice rating')
       .sort({ featured: -1, 'rating.average': -1 }) // Sort by featured and rating
       .limit(20); // Limit results
 
@@ -106,7 +106,7 @@ exports.addSampleData = async (req, res) => {
     const sampleData = [
       {
         title: 'Grand Royal Palace',
-        description: 'A luxurious venue with magnificent gardens and spacious ballrooms perfect for your dream wedding.',
+        date: 'DEC 2024 - NEW YORK',
         category: 'venues',
         image: '/images/venues/royal-palace.jpg',
         location: { city: 'New York', state: 'NY' },
@@ -118,7 +118,7 @@ exports.addSampleData = async (req, res) => {
       },
       {
         title: 'Elena Davis Photography',
-        description: 'Award-winning wedding photographer capturing your special moments with a creative and artistic style.',
+        date: 'JUN 2024 - LOS ANGELES',
         category: 'photographers',
         image: '/images/photographers/elena-davis.jpg',
         location: { city: 'Los Angeles', state: 'CA' },
@@ -130,7 +130,7 @@ exports.addSampleData = async (req, res) => {
       },
       {
         title: 'Perfect Day Planners',
-        description: 'Full-service wedding planning team specializing in luxury weddings and destination events.',
+        date: 'AUG 2024 - CHICAGO',
         category: 'planners',
         image: '/images/planners/perfect-day.jpg',
         location: { city: 'Chicago', state: 'IL' },
@@ -142,7 +142,7 @@ exports.addSampleData = async (req, res) => {
       },
       {
         title: 'Floral Dreams Decor',
-        description: 'Turn your wedding venue into a fairytale setting with our exquisite floral arrangements and decor.',
+        date: 'MAR 2024 - MIAMI',
         category: 'decor',
         image: '/images/decor/floral-dreams.jpg',
         location: { city: 'Miami', state: 'FL' },
@@ -154,7 +154,7 @@ exports.addSampleData = async (req, res) => {
       },
       {
         title: 'Sunset Beach Resort',
-        description: 'Beautiful beachfront venue for your perfect destination wedding with stunning sunset views.',
+        date: 'OCT 2024 - SAN DIEGO',
         category: 'venues',
         image: '/images/venues/sunset-beach.jpg',
         location: { city: 'San Diego', state: 'CA' },
