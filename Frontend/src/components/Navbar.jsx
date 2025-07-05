@@ -20,7 +20,7 @@ export default function Navbar() {
 
   // Sidebar navigation items
   const SidebarNav = (
-    <nav className="flex-1 w-full flex flex-col gap-y-3 px-6 mt-8">
+    <nav className="flex-1 w-full flex flex-col gap-y-3 px-6 mt-4 ">
       {navItems.map((item) => {
         const isActive = location.pathname === item.path;
         return (

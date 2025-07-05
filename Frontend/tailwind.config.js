@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import lineClamp from '@tailwindcss/line-clamp';
+// import lineClamp from '@tailwindcss/line-clamp';
 
 export default {
   content: [
@@ -14,7 +14,7 @@ export default {
         'primary-dark': '#e63946',
       },
       fontFamily: {
-        'serif': ['Georgia', 'serif'],
+        // 'serif': ['Georgia', 'serif'],
         'sans': ['Arial', 'sans-serif'],
         'serif': ['Playfair Display', 'serif'],
         'cursive': ['Pacifico', 'cursive'],
@@ -73,6 +73,6 @@ export default {
     },
   },
   plugins: [
-    lineClamp,
+    // lineClamp,
   ],
 }

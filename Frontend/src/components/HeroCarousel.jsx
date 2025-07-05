@@ -45,56 +45,93 @@ const HeroCarousel = () => {
     return () => clearInterval(timer);
   }, [weddings.length]);
 
-  // Reset video when slide changes
+  // Reset and play video when slide changes
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(console.error);
+      // Add a small delay to ensure video is loaded
+      setTimeout(() => {
+        if (videoRef.current) {
+          videoRef.current.play().catch(error => {
+            console.log("Video autoplay failed:", error);
+          });
+        }
+      }, 100);
     }
   }, [currentSlide]);
+
+  // Handle user interaction to enable autoplay
+  const handleUserInteraction = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play().catch(console.error);
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  };
+
+  // Handle video error
+  const handleVideoError = (e) => {
+    console.error("Video loading error:", e);
+  };
 
   const currentWedding = weddings[currentSlide];
 
   return (
     <div className="hero-carousel">
       <div className="carousel-container">
+        {/* Navigation buttons */}
+        <button className="carousel-nav prev" onClick={prevSlide}>
+          <FiChevronLeft />
+        </button>
+        <button className="carousel-nav next" onClick={nextSlide}>
+          <FiChevronRight />
+        </button>
+        
         {/* Background Video */}
-        <div className="hero-background">
+        <div className="hero-background" onClick={handleUserInteraction}>
           <video
             ref={videoRef}
             key={currentWedding.id}
             className="hero-video"
-            autoPlay
             muted
             loop
             playsInline
             preload="metadata"
+            poster={`/images/wedding-${currentWedding.id}-poster.jpg`}
+            onError={handleVideoError}
+            onLoadedData={() => {
+              if (videoRef.current) {
+                videoRef.current.play().catch(console.error);
+              }
+            }}
           >
             <source src={currentWedding.video} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <div className="hero-overlay"></div>
-        </div>
-
-        {/* Navigation Arrows */}
-        <button className="carousel-nav prev" onClick={prevSlide}>
-          <FiChevronLeft size={24} />
-        </button>
-        <button className="carousel-nav next" onClick={nextSlide}>
-          <FiChevronRight size={24} />
-        </button>
-
-        {/* Content */}
-        <div className="hero-content">
-          <div className="hero-text">
-            <div className="wedding-meta">
+          
+          {/* Content overlay */}
+          <div className="hero-content">
+            <div className="location-date">
               <span className="location">{currentWedding.location}</span>
-              <span className="separator">—</span>
               <span className="date">{currentWedding.date}</span>
             </div>
             
             <h1 className="wedding-title">{currentWedding.title}</h1>
             <p className="wedding-description">{currentWedding.description}</p>
+            
+            {/* Play button for better UX */}
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                handleUserInteraction();
+              }}
+              className="mt-6 px-8 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full text-white hover:bg-white/30 transition-all duration-300 font-medium"
+            >
+              {videoRef.current?.paused ? 'Play Video' : 'Pause Video'}
+            </button>
           </div>
         </div>
 
