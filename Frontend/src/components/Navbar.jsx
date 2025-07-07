@@ -55,7 +55,7 @@ export default function Navbar() {
       </button>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-80 bg-black flex-col items-center py-8 z-50">
+      <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-68 bg-black flex-col items-center py-8 z-50">
         {/* Logo */}
         <div className="mb-10">
           <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">

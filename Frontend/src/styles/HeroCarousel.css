@@ -187,3 +187,9 @@
   }
   .indicator { width: 10px; height: 10px; }
 }
+.hero-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  z-index: 1;
+}

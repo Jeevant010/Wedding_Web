@@ -92,21 +92,21 @@ const HeroCarousel = () => {
         {/* Background Video */}
         <div className="hero-background" onClick={handleUserInteraction}>
           <video
-            ref={videoRef}
-            key={currentWedding.id}
-            className="hero-video"
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={`/images/wedding-${currentWedding.id}-poster.jpg`}
-            onError={handleVideoError}
-            onLoadedData={() => {
-              if (videoRef.current) {
-                videoRef.current.play().catch(console.error);
-              }
-            }}
-          >
+                ref={videoRef}
+                key={currentWedding.id}
+                className="hero-video"
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                onError={handleVideoError}
+                onLoadedData={() => {
+                  if (videoRef.current) {
+                    videoRef.current.play().catch(console.error);
+                  }
+                }}
+              >
+
             <source src={currentWedding.video} type="video/mp4" />
             Your browser does not support the video tag.
           </video>

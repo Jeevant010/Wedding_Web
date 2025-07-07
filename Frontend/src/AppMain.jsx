@@ -8,7 +8,7 @@ export default function AppLayout({ children, currentPath }) {
       <Navbar currentPath={currentPath} />
 
       {/* Main Content Area */}
-      <div className="flex-1 bg-white min-h-screen overflow-auto ml-1 mr-1 lg:ml-28">
+      <div className="flex-1 bg-white min-h-screen overflow-auto ml-1 mr-3 lg:ml-5">
         <main className="px-1 py-8">
           {children}
         </main>
