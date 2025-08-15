@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 9000;
 
 // Middleware
 app.use(cors({
-    origin : ['http://localhost:5173', 'https://wedding-web-gold.vercel.app'],
+    origin : ['http://localhost:5174','http://localhost:5173', 'https://wedding-web-gold.vercel.app'],
     methods : "GET,POST,PUT,DELETE",
     credentials: true // Fixed typo: was 'credential'
 }));
